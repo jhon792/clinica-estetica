@@ -1,61 +1,72 @@
 import { useState } from 'react'
 
+const UNS = (id) => `https://images.unsplash.com/photo-${id}?w=600&q=85&auto=format&fit=crop`
+
 const SERVICE_IMG = {
+  // Fotos propias de la clínica
   'Armonización facial / Botox full face': '/fotos/Control Botox.jpeg',
-  'Labios Ácido Hialurónico': '/fotos/Labios Ácido Hialurónico.jpeg',
-  'Rinomodelación': '/fotos/Rinomodelación.jpeg',
-  'Mentón': '/fotos/Mentón.jpeg',
-  'Esperma de Salmón': '/fotos/Esperma de Salmón.jpeg',
-  'Hialuronidasa': '/fotos/Hialuronidasa.jpeg',
-  'Endolaser Facial': '/fotos/Endolaser Facial.jpeg',
-  'Limpieza Facial Profunda + Plasma': '/fotos/Limpieza Facial Profunda.jpeg',
-  'Limpieza Facial Profunda': '/fotos/Limpieza Facial Profunda.jpeg',
-  'Hidratación Labios con Hidrafiller': '/fotos/Hidratación Labios con Hidrafiller.jpeg',
-  'Retoque Labios': '/fotos/Retoque Labios.jpeg',
-  'Control Botox': '/fotos/Control Botox.jpeg',
-  'Valoración Armonización Facial': '/fotos/Valoración Armonización Facial.jpeg',
-  'Péptidos': 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=85&auto=format&fit=crop',
-  'Endolaser Corporal': 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&q=85&auto=format&fit=crop',
-  'Depilación Láser': 'https://images.unsplash.com/photo-1614624532983-4ce03382d63d?w=500&q=85&auto=format&fit=crop',
-  'Sueroterapia': 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=500&q=85&auto=format&fit=crop',
-  'Enzimas': 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=85&auto=format&fit=crop',
-  'Ezosomas': 'https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=500&q=85&auto=format&fit=crop',
-  'Remoción de Lunares': 'https://images.unsplash.com/photo-1595867818082-083862f3d630?w=500&q=85&auto=format&fit=crop',
-  'Labios Técnica Suave': 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=85&auto=format&fit=crop',
-  'Peptonas-Vitamina C': 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&q=85&auto=format&fit=crop',
-  'Liposucción': 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=85&auto=format&fit=crop',
-  'Lipectomía (abdominoplastia)': 'https://images.unsplash.com/photo-1551590192-8070a16d9f67?w=500&q=85&auto=format&fit=crop',
-  'Balón Gástrico': 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=85&auto=format&fit=crop',
-  'Lipoescultura 360°': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=85&auto=format&fit=crop',
-  'Gluteoplastia (aumento de glúteos)': 'https://images.unsplash.com/photo-1498757581981-8ddb3c0b9b07?w=500&q=85&auto=format&fit=crop',
-  'Mastopexia (levantamiento de senos)': 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=85&auto=format&fit=crop',
-  'Rinoplastia': 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=500&q=85&auto=format&fit=crop',
-  'Blefaroplastia (párpados)': 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf?w=500&q=85&auto=format&fit=crop',
+  'Labios Ácido Hialurónico':             '/fotos/Labios Ácido Hialurónico.jpeg',
+  'Rinomodelación':                       '/fotos/Rinomodelación.jpeg',
+  'Mentón':                               '/fotos/Mentón.jpeg',
+  'Esperma de Salmón':                    '/fotos/Esperma de Salmón.jpeg',
+  'Hialuronidasa':                        '/fotos/Hialuronidasa.jpeg',
+  'Endolaser Facial':                     '/fotos/Endolaser Facial.jpeg',
+  'Limpieza Facial Profunda + Plasma':    '/fotos/Limpieza Facial Profunda.jpeg',
+  'Limpieza Facial Profunda':             '/fotos/Limpieza Facial Profunda.jpeg',
+  'Hidratación Labios con Hidrafiller':   '/fotos/Hidratación Labios con Hidrafiller.jpeg',
+  'Retoque Labios':                       '/fotos/Retoque Labios.jpeg',
+  'Control Botox':                        '/fotos/Control Botox.jpeg',
+  'Valoración Armonización Facial':       '/fotos/Valoración Armonización Facial.jpeg',
+
+  // Corporal & Bienestar
+  'Péptidos':           UNS('1591384658362-1105c821611c'), // cuerpo esbelto en ropa deportiva
+  'Endolaser Corporal': UNS('1717500251979-8a53b300d88b'), // mujer junto a máquina de tratamiento corporal
+  'Depilación Láser':   UNS('1746806942799-b4db209e9a6b'), // profesional aplicando láser sobre paciente
+  'Sueroterapia':       UNS('1516574187841-cb9cc2ca948b'), // suero IV médico en soporte clínico
+  'Enzimas':            UNS('1605552986371-d78779ebe38b'), // primer plano textura de piel
+  'Ezosomas':           UNS('1710580889701-9fa8f2cd5927'), // piel saludable en detalle
+
+  // Otros Tratamientos
+  'Remoción de Lunares':  UNS('1541752857837-f8a0154fd092'), // piel con manchas — zona a tratar
+  'Labios Técnica Suave': UNS('1654374504608-67c4cfe65fca'), // primer plano labios y nariz
+  'Peptonas-Vitamina C':  UNS('1723951174326-2a97221d3b7f'), // vitamina C con limones
+
+  // Cirugía Estética
+  'Liposucción':                          UNS('1747398594110-70ac0f75e3bc'), // primer plano abdomen
+  'Lipectomía (abdominoplastia)':         UNS('1570454564834-efe597f09fe4'), // perfil artístico zona abdominal
+  'Balón Gástrico':                       UNS('1675270444770-1a6d1f69aefc'), // mujer midiendo cintura
+  'Lipoescultura 360°':                   UNS('1646909876562-9a00dab98e65'), // silueta corporal esculpida
+  'Gluteoplastia (aumento de glúteos)':   UNS('1539272063674-aa6bdb6f1e32'), // perfil lateral cadera/glúteo
+  'Mastopexia (levantamiento de senos)':  UNS('1769029271063-64e3084529f2'), // medición de contorno de busto
+  'Rinoplastia':                          UNS('1762114468798-b3983219b584'), // perfil facial — nariz
+  'Blefaroplastia (párpados)':            UNS('1483519173755-be893fab1f46'), // macro ojo humano
 }
 
 const categories = [
   {
     id: 'facial',
     label: 'Facial & Armonización',
+    imgFocus: 'center 22%',
     services: [
-      { name: 'Armonización facial / Botox full face', duration: '60 min', price: '$850.000', desc: 'Botox premium para un rostro fresco, joven y armonioso.' },
-      { name: 'Labios Ácido Hialurónico', duration: '30 min', price: '$900.000', desc: 'Labios más voluminosos y definidos de forma natural y hidratada.' },
-      { name: 'Rinomodelación', duration: '60 min', price: '$850.000', desc: 'Define y eleva tu nariz sin cirugía con resultados inmediatos.' },
-      { name: 'Mentón', duration: '30 min', price: '$850.000', desc: 'Proyecta tu perfil y armoniza tu rostro con precisión milimétrica.' },
+      { name: 'Armonización facial / Botox full face', duration: '60 min', price: '$850.000', desc: 'Botox premium para un rostro fresco, joven y armonioso.', imgFocus: 'center 18%' },
+      { name: 'Labios Ácido Hialurónico', duration: '30 min', price: '$900.000', desc: 'Labios más voluminosos y definidos de forma natural y hidratada.', imgFocus: 'center 62%' },
+      { name: 'Rinomodelación', duration: '60 min', price: '$850.000', desc: 'Define y eleva tu nariz sin cirugía con resultados inmediatos.', imgFocus: 'center 40%' },
+      { name: 'Mentón', duration: '30 min', price: '$850.000', desc: 'Proyecta tu perfil y armoniza tu rostro con precisión milimétrica.', imgFocus: 'center 65%' },
       { name: 'Esperma de Salmón', duration: '30 min', price: '$1.200.000', desc: 'Tres sesiones para regeneración celular profunda y bioestimulación.' },
       { name: 'Hialuronidasa', duration: '20 min', price: '$150.000', desc: 'Disuelve o ajusta ácido hialurónico previo de forma segura.' },
       { name: 'Endolaser Facial', duration: '120 min', price: '$1.500.000', desc: 'Tecnología láser para rejuvenecimiento facial profundo y duradero.' },
       { name: 'Limpieza Facial Profunda + Plasma', duration: '60 min', price: '$150.000', desc: 'Limpieza profesional potenciada con plasma rico en plaquetas.' },
       { name: 'Limpieza Facial Profunda', duration: '60 min', price: '$100.000', desc: 'Limpieza intensiva para una piel radiante y libre de impurezas.' },
-      { name: 'Hidratación Labios con Hidrafiller', duration: '20 min', price: '$150.000', desc: 'Hidratación profunda y volumen natural para unos labios perfectos.' },
-      { name: 'Retoque Labios', duration: '30 min', price: '$450.000', desc: 'Perfecciona y mantiene los resultados de tratamientos previos.' },
-      { name: 'Control Botox', duration: '30 min', price: '$50.000', desc: 'Seguimiento y ajuste preciso de tratamientos de botox anteriores.' },
+      { name: 'Hidratación Labios con Hidrafiller', duration: '20 min', price: '$150.000', desc: 'Hidratación profunda y volumen natural para unos labios perfectos.', imgFocus: 'center 62%' },
+      { name: 'Retoque Labios', duration: '30 min', price: '$450.000', desc: 'Perfecciona y mantiene los resultados de tratamientos previos.', imgFocus: 'center 62%' },
+      { name: 'Control Botox', duration: '30 min', price: '$50.000', desc: 'Seguimiento y ajuste preciso de tratamientos de botox anteriores.', imgFocus: 'center 18%' },
       { name: 'Valoración Armonización Facial', duration: '30 min', price: '$50.000', desc: 'Consulta diagnóstica personalizada para planificar tu tratamiento.' },
     ],
   },
   {
     id: 'corporal',
     label: 'Corporal & Bienestar',
+    imgFocus: 'center 50%',
     services: [
       { name: 'Péptidos', duration: '30 min', price: '$1.500.000', desc: 'Tratamiento de pérdida de peso progresivo y bienestar integral.' },
       { name: 'Endolaser Corporal', duration: '120 min', price: '$1.800.000', desc: 'Moldea tu cuerpo eliminando grasa localizada con tecnología láser.' },
@@ -68,31 +79,34 @@ const categories = [
   {
     id: 'otros',
     label: 'Otros Tratamientos',
+    imgFocus: 'center 35%',
     services: [
       { name: 'Remoción de Lunares', duration: '30 min', price: '$150.000', desc: 'Sin dolor, segura y rápida. Resultados definitivos en tu piel.' },
-      { name: 'Labios Técnica Suave', duration: '30 min', price: '$850.000', desc: 'Labios más jugosos y definidos. Haz brillar tu sonrisa.' },
+      { name: 'Labios Técnica Suave', duration: '30 min', price: '$850.000', desc: 'Labios más jugosos y definidos. Haz brillar tu sonrisa.', imgFocus: 'center 62%' },
       { name: 'Peptonas-Vitamina C', duration: '20 min', price: '$60.000', desc: 'Cóctel vitamínico revitalizante para luminosidad y firmeza inmediata.' },
     ],
   },
   {
     id: 'quirurgicos',
     label: 'Cirugía Estética',
+    imgFocus: 'center 40%',
     services: [
-      { name: 'Liposucción', duration: '2–4 h', desc: 'Elimina depósitos de grasa resistentes y moldea tu silueta.' },
-      { name: 'Lipectomía (abdominoplastia)', duration: '2–3 h', desc: 'Abdomen plano y firme. Retira exceso de piel y reafirma musculatura.' },
-      { name: 'Balón Gástrico', duration: '30 min', desc: 'Procedimiento mínimamente invasivo para pérdida de peso progresiva.' },
-      { name: 'Lipoescultura 360°', duration: '3–5 h', desc: 'Redefinición integral del contorno corporal en alta definición.' },
-      { name: 'Gluteoplastia (aumento de glúteos)', duration: '2–3 h', desc: 'Glúteos proyectados y naturales adaptados a tu anatomía.' },
-      { name: 'Mastopexia (levantamiento de senos)', duration: '2–3 h', desc: 'Recupera la firmeza del busto con resultados estéticos duraderos.' },
-      { name: 'Rinoplastia', duration: '2–3 h', desc: 'Refinamiento quirúrgico para lograr armonía facial perfecta.' },
-      { name: 'Blefaroplastia (párpados)', duration: '1–2 h', desc: 'Rejuvenece la mirada con una expresión fresca y descansada.' },
+      { name: 'Liposucción', duration: '2–4 h', desc: 'Elimina depósitos de grasa resistentes y moldea tu silueta.', imgFocus: 'center 50%' },
+      { name: 'Lipectomía (abdominoplastia)', duration: '2–3 h', desc: 'Abdomen plano y firme. Retira exceso de piel y reafirma musculatura.', imgFocus: 'center 50%' },
+      { name: 'Balón Gástrico', duration: '30 min', desc: 'Procedimiento mínimamente invasivo para pérdida de peso progresiva.', imgFocus: 'center 50%' },
+      { name: 'Lipoescultura 360°', duration: '3–5 h', desc: 'Redefinición integral del contorno corporal en alta definición.', imgFocus: 'center 50%' },
+      { name: 'Gluteoplastia (aumento de glúteos)', duration: '2–3 h', desc: 'Glúteos proyectados y naturales adaptados a tu anatomía.', imgFocus: 'center 50%' },
+      { name: 'Mastopexia (levantamiento de senos)', duration: '2–3 h', desc: 'Recupera la firmeza del busto con resultados estéticos duraderos.', imgFocus: 'center 50%' },
+      { name: 'Rinoplastia', duration: '2–3 h', desc: 'Refinamiento quirúrgico para lograr armonía facial perfecta.', imgFocus: 'center 38%' },
+      { name: 'Blefaroplastia (párpados)', duration: '1–2 h', desc: 'Rejuvenece la mirada con una expresión fresca y descansada.', imgFocus: 'center 30%' },
     ],
   },
 ]
 
-function ServiceCard({ service }) {
+function ServiceCard({ service, defaultImgFocus = 'center 50%' }) {
   const [hov, setHov] = useState(false)
   const img = SERVICE_IMG[service.name]
+  const imgFocus = service.imgFocus || defaultImgFocus
 
   return (
     <article
@@ -101,14 +115,18 @@ function ServiceCard({ service }) {
       className="bg-white border border-[#e8e0d4] hover:border-[#b8973e]/60 hover:shadow-[0_12px_40px_rgba(0,0,0,0.10)] transition-all duration-400 flex flex-col overflow-hidden group"
     >
       {/* Image */}
-      <div className="relative h-52 overflow-hidden bg-[#f9f6f0] shrink-0">
+      <div className="relative h-80 overflow-hidden bg-[#f9f6f0] shrink-0">
         {img ? (
           <img
             src={img}
             alt={service.name}
             loading="lazy"
-            className="w-full h-full object-cover object-center transition-transform duration-700"
-            style={{ transform: hov ? 'scale(1.06)' : 'scale(1)' }}
+            className="w-full h-full object-cover transition-transform duration-700"
+            style={{
+              transform: hov ? 'scale(1.10)' : 'scale(1)',
+              objectPosition: imgFocus,
+              transformOrigin: imgFocus,
+            }}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
@@ -215,7 +233,7 @@ export default function Services() {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {active.services.map(svc => (
-            <ServiceCard key={svc.name} service={svc} />
+            <ServiceCard key={svc.name} service={svc} defaultImgFocus={active.imgFocus} />
           ))}
         </div>
 

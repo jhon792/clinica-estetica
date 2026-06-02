@@ -4,7 +4,11 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import ConsultationBar from './components/ConsultationBar'
+import BodyWellness from './components/BodyWellness'
 import Services from './components/Services'
+import WhyUs from './components/WhyUs'
+import Videos from './components/Videos'
+import Blog from './components/Blog'
 import Testimonials from './components/Testimonials'
 import About from './components/About'
 import Footer from './components/Footer'
@@ -20,7 +24,11 @@ export default function App() {
         <Hero />
         <TrustBar />
         <ConsultationBar />
+        <BodyWellness />
         <Services />
+        <WhyUs />
+        <Videos />
+        <Blog />
         <Testimonials />
         <About />
       </main>
