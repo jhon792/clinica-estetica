@@ -84,9 +84,12 @@ export default function ConsultationBar() {
           <div className="hidden lg:block w-px h-20 bg-[#d4c4a0] shrink-0" />
 
           {/* Form — envía a WhatsApp */}
+          {/* MEJORA SEO: labels accesibles (sr-only) para asociar cada campo */}
           <form onSubmit={handleSubmit} className="flex-1 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <label htmlFor="cita-nombre" className="sr-only">Nombre completo</label>
               <input
+                id="cita-nombre"
                 type="text"
                 placeholder="Nombre completo"
                 required
@@ -94,20 +97,26 @@ export default function ConsultationBar() {
                 onChange={e => setForm({ ...form, name: e.target.value })}
                 className="col-span-2 lg:col-span-1 bg-white border border-[#e8e0d4] text-[#1a1612] text-[12px] font-medium placeholder-[#9a8e84] px-4 py-3.5 focus:border-[#b8973e] focus:outline-none transition-all duration-200"
               />
+              <label htmlFor="cita-telefono" className="sr-only">WhatsApp o teléfono</label>
               <input
+                id="cita-telefono"
                 type="tel"
                 placeholder="WhatsApp / Teléfono"
                 value={form.phone}
                 onChange={e => setForm({ ...form, phone: e.target.value })}
                 className="col-span-2 lg:col-span-1 bg-white border border-[#e8e0d4] text-[#1a1612] text-[12px] font-medium placeholder-[#9a8e84] px-4 py-3.5 focus:border-[#b8973e] focus:outline-none transition-all duration-200"
               />
+              <label htmlFor="cita-fecha" className="sr-only">Fecha preferida</label>
               <input
+                id="cita-fecha"
                 type="date"
                 value={form.date}
                 onChange={e => setForm({ ...form, date: e.target.value })}
                 className="bg-white border border-[#e8e0d4] text-[#1a1612] text-[12px] font-medium px-4 py-3.5 focus:border-[#b8973e] focus:outline-none transition-all duration-200"
               />
+              <label htmlFor="cita-servicio" className="sr-only">Tipo de tratamiento</label>
               <select
+                id="cita-servicio"
                 required
                 value={form.service}
                 onChange={e => setForm({ ...form, service: e.target.value })}

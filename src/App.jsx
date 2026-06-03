@@ -36,12 +36,21 @@ export default function App() {
       <Footer />
 
       {/* WhatsApp flotante con mensaje pre-llenado — embudo SEO → WA → Cita */}
+      {/* MEJORA SEO: evento gtag para tracking de clics — requiere GTM/GA4 configurado */}
       <a
         href={waLink(WA_MSG_DEFAULT)}
         target="_blank"
         rel="noreferrer"
         aria-label="Contactar por WhatsApp — Clínica Estética Bogotá"
         title="Escríbenos por WhatsApp"
+        onClick={() => {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'whatsapp_click', {
+              event_category: 'engagement',
+              event_label: 'boton_flotante',
+            })
+          }
+        }}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] transition-all duration-300 hover:scale-110 group"
       >
         <svg width="26" height="26" viewBox="0 0 24 24" fill="white">

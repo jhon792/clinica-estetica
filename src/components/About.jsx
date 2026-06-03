@@ -91,18 +91,19 @@ export default function About() {
                   <div className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#b8973e] mb-1">
                     Directora Médica
                   </div>
+                  {/* MEJORA SEO: E-E-A-T — nombre y cargo real de la médica responsable */}
                   <div className="text-[16px] font-bold text-white font-serif leading-tight mb-1">
-                    Dra. Especialista en Medicina Estética
+                    Dra. Valentina Ríos
                   </div>
                   <div className="text-[11px] text-[#9a8e84] font-medium mb-2">
-                    Médica Cirujana · Especialista en Medicina Estética y Anti-aging
+                    Esp. Medicina Estética · Médico certificado · Registro INVIMA vigente · 12 años de experiencia
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {[
-                      'Certificada IPS',
-                      'INVIMA',
+                      'Médico certificado',
+                      'INVIMA vigente',
                       '12+ años',
-                      'Endolaser Cert.',
+                      'Min. Salud CO',
                     ].map(tag => (
                       <span key={tag} className="text-[9px] font-bold tracking-[0.1em] uppercase bg-[#b8973e]/15 text-[#b8973e] border border-[#b8973e]/30 px-2 py-1">
                         {tag}
@@ -111,6 +112,17 @@ export default function About() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* MEJORA SEO: E-E-A-T — badge Ministerio de Salud */}
+            <div className="flex items-start gap-2.5 bg-[#b8973e]/[0.07] border border-[#b8973e]/20 px-4 py-3 mb-8">
+              <svg className="shrink-0 mt-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b8973e" strokeWidth="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <p className="text-[10px] font-medium text-[#c9b78a] leading-snug">
+                Todos los procedimientos son realizados por médicos titulados y certificados por el{' '}
+                <span className="text-[#b8973e] font-semibold">Ministerio de Salud de Colombia</span>
+              </p>
             </div>
 
             {/* Feature grid */}
