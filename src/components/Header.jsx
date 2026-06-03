@@ -13,8 +13,9 @@ const navLinks = [
       { label: 'Otros Tratamientos', href: '#servicios' },
     ],
   },
-  { label: 'Tecnología', href: '#nosotros' },
-  { label: 'Galería', href: '#nosotros' },
+  { label: '¿Por qué Nosotros?', href: '#por-que-escogernos' },
+  { label: 'Blog', href: '#blog' },
+  { label: 'Videos', href: '#videos' },
   { label: 'Contacto', href: '#contacto' },
 ]
 
@@ -135,7 +136,7 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-400 ${menuOpen ? 'max-h-[420px] border-t border-[#e8e0d4]' : 'max-h-0'}`}>
+      <div className={`lg:hidden overflow-hidden transition-all duration-400 ${menuOpen ? 'max-h-[520px] border-t border-[#e8e0d4]' : 'max-h-0'}`}>
         <nav className="flex flex-col py-3 bg-white">
           {navLinks.map(link => (
             <a
