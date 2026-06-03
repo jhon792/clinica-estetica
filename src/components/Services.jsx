@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { waLink, WA_MSG_SERVICE } from '../config'
 
 const UNS = (id) => `https://images.unsplash.com/photo-${id}?w=600&q=85&auto=format&fit=crop`
 
@@ -162,7 +163,9 @@ function ServiceCard({ service, defaultImgFocus = 'center 50%' }) {
             <span className="text-[10px] font-medium">{service.duration}</span>
           </div>
           <a
-            href="#consulta"
+            href={waLink(WA_MSG_SERVICE(service.name))}
+            target="_blank"
+            rel="noreferrer"
             className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#1a1612] hover:text-[#b8973e] flex items-center gap-1.5 transition-colors duration-200"
           >
             Reservar

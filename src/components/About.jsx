@@ -1,10 +1,12 @@
+import { waLink } from '../config'
+
 const features = [
-  'Médicos especialistas certificados',
-  'Tecnología Endolaser de última generación',
+  'Médicos especialistas certificados IPS',
+  'Tecnología Endolaser certificada INVIMA',
   'Resultados naturales y duraderos',
   'Ambiente premium y esterilizado',
-  'Protocolos clínicos seguros',
-  'Seguimiento post-tratamiento',
+  'Protocolos clínicos de bioseguridad',
+  'Seguimiento post-tratamiento incluido',
 ]
 
 export default function About() {
@@ -19,7 +21,10 @@ export default function About() {
             <div className="relative w-[78%] h-[500px] overflow-hidden">
               <img
                 src="/fotos/doctora.jpeg"
-                alt="Doctora especialista"
+                alt="Doctora especialista en medicina estética Bogotá Colombia"
+                loading="lazy"
+                width="600"
+                height="800"
                 className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 border border-[#b8973e]/20" />
@@ -30,7 +35,10 @@ export default function About() {
             <div className="absolute bottom-0 right-0 w-[46%] h-[280px] overflow-hidden border-[5px] border-[#0f0d0b]">
               <img
                 src="/fotos/doctora.jpeg"
-                alt="Especialista en estética"
+                alt="Especialista en armonización facial y cirugía estética Bogotá"
+                loading="lazy"
+                width="400"
+                height="560"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 25%' }}
               />
@@ -46,11 +54,11 @@ export default function About() {
               </div>
             </div>
 
-            {/* Gold left accent line */}
+            {/* Gold accent line */}
             <div className="absolute top-10 -left-5 w-0.5 h-28 bg-gradient-to-b from-transparent via-[#b8973e] to-transparent opacity-60" />
           </div>
 
-          {/* Right: Text */}
+          {/* Right: Text + Doctor credentials */}
           <div>
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-[#b8973e]" />
@@ -59,18 +67,51 @@ export default function About() {
               </span>
             </div>
 
-            <h2 className="text-[36px] lg:text-[48px] font-extrabold text-white leading-tight tracking-[-0.02em] mb-8 font-serif">
+            <h2 className="text-[36px] lg:text-[48px] font-extrabold text-white leading-tight tracking-[-0.02em] mb-6 font-serif">
               Procedimientos de Alto<br />
               <span className="text-[#b8973e]">Estándar Médico</span><br />
-              para Nuestros Pacientes.
+              en Bogotá.
             </h2>
 
             <p className="text-[13px] font-medium leading-[1.9] text-[#9a8e84] mb-5">
-              En nuestra clínica de estética avanzada combinamos la precisión de la medicina científica con el arte de la belleza. Cada tratamiento está diseñado para realzar tu belleza natural con los más altos estándares de seguridad.
+              En nuestra clínica de estética avanzada en Bogotá, Colombia, combinamos la precisión
+              de la medicina científica con el arte de la belleza. Cada tratamiento está diseñado para
+              realzar tu belleza natural con los más altos estándares de seguridad clínica.
             </p>
-            <p className="text-[13px] font-medium leading-[1.9] text-[#9a8e84] mb-10">
-              Nuestro equipo de especialistas certificados utiliza tecnología de vanguardia para ofrecerte resultados naturales y duraderos en un ambiente de confort y privacidad absoluta.
-            </p>
+
+            {/* Doctor credentials card — E-E-A-T */}
+            <div className="bg-white/[0.05] border border-[#b8973e]/25 p-5 mb-8">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full border-2 border-[#b8973e]/40 flex items-center justify-center shrink-0 bg-[#b8973e]/10">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8973e" strokeWidth="1.5">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <div className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#b8973e] mb-1">
+                    Directora Médica
+                  </div>
+                  <div className="text-[16px] font-bold text-white font-serif leading-tight mb-1">
+                    Dra. Especialista en Medicina Estética
+                  </div>
+                  <div className="text-[11px] text-[#9a8e84] font-medium mb-2">
+                    Médica Cirujana · Especialista en Medicina Estética y Anti-aging
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      'Certificada IPS',
+                      'INVIMA',
+                      '12+ años',
+                      'Endolaser Cert.',
+                    ].map(tag => (
+                      <span key={tag} className="text-[9px] font-bold tracking-[0.1em] uppercase bg-[#b8973e]/15 text-[#b8973e] border border-[#b8973e]/30 px-2 py-1">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Feature grid */}
             <div className="grid grid-cols-2 gap-3 mb-10">
@@ -87,7 +128,7 @@ export default function About() {
             {/* Stats row */}
             <div className="flex items-center gap-8 pt-8 border-t border-[#2a2420] mb-8">
               {[
-                { num: '2.500+', label: 'Pacientes satisfechos' },
+                { num: '2.500+', label: 'Pacientes en Bogotá' },
                 { num: '30+', label: 'Tratamientos disponibles' },
                 { num: '100%', label: 'Protocolos certificados' },
               ].map(s => (
@@ -99,10 +140,12 @@ export default function About() {
             </div>
 
             <a
-              href="#consulta"
+              href={waLink('Hola! Quiero agendar una valoración estética en Clínica Estética Premium Bogotá.')}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center gap-3 border-2 border-[#b8973e] text-[#b8973e] hover:bg-[#b8973e] hover:text-white text-[11px] font-bold tracking-[0.12em] uppercase px-8 py-4 transition-all duration-300"
             >
-              Agenda tu Valoración
+              Agenda tu Valoración en Bogotá
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>

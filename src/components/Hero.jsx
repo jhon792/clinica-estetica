@@ -1,3 +1,5 @@
+import { waLink, WA_MSG_DEFAULT } from '../config'
+
 export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-[92vh] bg-white overflow-hidden flex items-stretch">
@@ -10,29 +12,34 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 border border-[#b8973e]/40 bg-[#f9f6f0] px-4 py-2 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-[#b8973e]" />
             <span className="text-[10px] font-bold tracking-[0.28em] uppercase text-[#b8973e]">
-              Clínica Certificada · Villavicencio, Meta
+              Clínica Certificada · Bogotá, Colombia
             </span>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-[44px] md:text-[54px] lg:text-[62px] font-extrabold leading-[1.02] tracking-[-0.025em] text-[#1a1612] mb-6">
+          {/* H1 con keywords locales para SEO */}
+          <h1 className="text-[44px] md:text-[54px] lg:text-[62px] font-extrabold leading-[1.02] tracking-[-0.025em] text-[#1a1612] mb-3">
             Medicina Estética<br />
-            <span className="text-[#b8973e]">en su Máxima</span><br />
-            Expresión.
+            <span className="text-[#b8973e]">en Bogotá</span>
           </h1>
+          <p className="text-[16px] font-semibold text-[#4a4240] mb-4 leading-snug">
+            Armonización Facial · Botox · Endolaser · Cirugía Estética
+          </p>
 
           <p className="text-[14px] font-normal leading-[1.85] text-[#6b7280] mb-10 max-w-[420px]">
-            Experiencia clínica avanzada, tecnología de última generación y protocolos
-            personalizados para resultados seguros, efectivos y medibles.
+            Experiencia clínica avanzada, tecnología certificada y protocolos
+            personalizados para resultados seguros, efectivos y medibles en el
+            corazón de Colombia.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap items-center gap-4 mb-14">
             <a
-              href="#consulta"
+              href={waLink(WA_MSG_DEFAULT)}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center gap-3 bg-[#b8973e] hover:bg-[#9a7c32] text-white text-[12px] font-bold tracking-[0.08em] uppercase px-8 py-4 transition-all duration-300 shadow-[0_6px_24px_rgba(184,151,62,0.35)] hover:shadow-[0_8px_30px_rgba(184,151,62,0.45)]"
             >
-              Reserva Ahora
+              Reserva Ahora — Gratis
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
@@ -49,7 +56,7 @@ export default function Hero() {
           <div className="grid grid-cols-3 gap-6 pt-8 border-t border-[#e8e0d4]">
             {[
               { num: '4.9', label: '★ en Google', detail: '500+ reseñas' },
-              { num: '12+', label: 'Años de experiencia' },
+              { num: '12+', label: 'Años de experiencia', detail: 'En Colombia' },
               { num: '2.500+', label: 'Pacientes atendidos' },
             ].map(s => (
               <div key={s.label}>
@@ -66,7 +73,10 @@ export default function Hero() {
       <div className="hidden lg:block absolute right-0 top-0 w-[50%] h-full">
         <img
           src="/fotos/portada.jpeg"
-          alt="Medicina estética de vanguardia"
+          alt="Médica especialista en medicina estética Bogotá Colombia realizando tratamiento de armonización facial"
+          width="900"
+          height="1200"
+          fetchPriority="high"
           className="w-full h-full object-cover object-center"
         />
         {/* Blend edge */}
@@ -76,8 +86,8 @@ export default function Hero() {
 
         {/* Floating card — technology */}
         <div className="absolute top-12 left-10 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.14)] px-6 py-5 border-l-[3px] border-[#b8973e]">
-          <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#b8973e] mb-1">Tecnología</div>
-          <div className="text-[14px] font-bold text-[#1a1612]">Endolaser Certificado</div>
+          <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#b8973e] mb-1">Tecnología Certificada</div>
+          <div className="text-[14px] font-bold text-[#1a1612]">Endolaser · INVIMA</div>
           <div className="text-[11px] text-[#6b7280] mt-0.5 font-medium">Resultados desde la 1ª sesión</div>
         </div>
 
@@ -92,11 +102,11 @@ export default function Hero() {
           </div>
           <div>
             <div className="text-[13px] font-bold text-[#1a1612] leading-none">4.9 / 5</div>
-            <div className="text-[9px] text-[#6b7280] font-medium mt-0.5">500+ reseñas verificadas</div>
+            <div className="text-[9px] text-[#6b7280] font-medium mt-0.5">500+ reseñas en Google</div>
           </div>
         </div>
 
-        {/* Gold accent line top-right */}
+        {/* Gold accent line */}
         <div className="absolute top-0 right-0 w-1 h-24 bg-gradient-to-b from-[#b8973e] to-transparent pointer-events-none" />
       </div>
 
@@ -104,6 +114,8 @@ export default function Hero() {
       <div
         className="lg:hidden absolute inset-0 z-0"
         style={{ backgroundImage: 'url(/fotos/portada.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center top' }}
+        role="img"
+        aria-label="Clínica Estética Premium Bogotá"
       >
         <div className="absolute inset-0 bg-white/90" />
       </div>

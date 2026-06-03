@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
             <h3 className="text-[30px] font-extrabold text-white mb-8 leading-tight font-serif">
               Visítanos en<br />
-              <span className="text-[#b8973e]">Villavicencio, Meta</span>
+              <span className="text-[#b8973e]">Bogotá, Colombia</span>
             </h3>
 
             <div className="space-y-5">
@@ -52,7 +52,7 @@ export default function Footer() {
                 {
                   icon: <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/>,
                   label: 'Dirección',
-                  value: 'Cra. 43 #18-101, Villavicencio · Meta, Colombia',
+                  value: 'Bogotá, Colombia',
                   href: null,
                 },
                 {
@@ -99,7 +99,7 @@ export default function Footer() {
           <div className="relative h-[360px] overflow-hidden border border-[#2a2420]">
             <iframe
               title="Ubicación Clínica"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.5!2d-73.6321!3d4.1421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCra.+43+%2318-101%2C+Villavicencio!5e0!3m2!1ses!2sco!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.5!2d-73.6321!3d4.1421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCra.+43+%2318-101%2C+Bogotá!5e0!3m2!1ses!2sco!4v1"
               width="100%"
               height="100%"
               style={{ border: 0, filter: 'grayscale(90%) contrast(1.05) brightness(0.85)' }}
@@ -130,7 +130,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-[11px] font-medium leading-[1.8] text-[#6b7280] mb-6">
-            Medicina estética de vanguardia en el corazón de Villavicencio. Tu belleza, nuestra pasión.
+            Medicina estética de vanguardia en el corazón de Bogotá. Tu belleza, nuestra pasión.
           </p>
           <div className="flex items-center gap-2.5">
             {socials.map(s => (
@@ -204,7 +204,7 @@ export default function Footer() {
       <div className="border-t border-[#1e1a17]">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[10px] font-medium tracking-wide text-[#3a3330]">
-            © 2026 Clínica Estética Premium · Villavicencio, Meta, Colombia
+            © 2026 Clínica Estética Premium · Bogotá, Colombia, Colombia
           </p>
           <div className="flex items-center gap-2">
             <div className="h-px w-8 bg-[#b8973e]/25" />
