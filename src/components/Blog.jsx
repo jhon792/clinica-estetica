@@ -16,30 +16,6 @@ const posts = [
     image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=85&auto=format&fit=crop',
   },
   {
-    category: 'Motivaciones',
-    title: '¿Por Qué Cada Vez Más Personas Eligen Tratamientos Estéticos?',
-    excerpt: 'Desde corregir complejos de larga data hasta simplemente sentirse mejor consigo mismos: exploramos las razones más comunes detrás de la decisión de someterse a un procedimiento estético.',
-    readTime: '6 min',
-    date: 'Sep 2024',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=85&auto=format&fit=crop',
-  },
-  {
-    category: 'Pre & Post Cuidados',
-    title: 'Guía Completa de Cuidados Antes y Después de tu Procedimiento',
-    excerpt: 'Una recuperación exitosa empieza antes del procedimiento. Compartimos el protocolo completo que recomendamos a nuestros pacientes para maximizar resultados y minimizar el tiempo de recuperación.',
-    readTime: '7 min',
-    date: 'Ago 2024',
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=700&q=85&auto=format&fit=crop',
-  },
-  {
-    category: 'Recuperación',
-    title: 'Recomendaciones Médicas para una Recuperación Óptima y Segura',
-    excerpt: 'Nuestros especialistas comparten los consejos más importantes para asegurar una recuperación rápida, sin complicaciones y con los mejores resultados posibles después de cada tratamiento.',
-    readTime: '5 min',
-    date: 'Jul 2024',
-    image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf?w=700&q=85&auto=format&fit=crop',
-  },
-  {
     category: 'Armonización Facial',
     title: 'Armonización Facial: El Arte de Realzar tu Belleza Natural',
     excerpt: 'La armonización facial no busca cambiar quién eres, sino equilibrar y potenciar tus rasgos únicos. Conoce en qué consiste, qué esperar y por qué es el procedimiento más solicitado de la clínica.',
@@ -157,7 +133,7 @@ export default function Blog() {
         </div>
 
         {/* Featured + grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <BlogCard post={featured} featured />
           {rest.map((post) => (
             <BlogCard key={post.title} post={post} />
