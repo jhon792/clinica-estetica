@@ -66,7 +66,7 @@ export default function Header() {
         scrolled ? 'shadow-[0_2px_16px_rgba(0,0,0,0.08)]' : 'border-b border-[#e8e0d4]'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-[70px] flex items-center justify-between gap-8">
+      <div className="max-w-[1440px] mx-auto px-6 h-[70px] flex items-center justify-between gap-8">
 
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 shrink-0 group">

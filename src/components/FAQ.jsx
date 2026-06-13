@@ -47,7 +47,7 @@ export default function FAQ() {
 
   return (
     <section id="preguntas-frecuentes" className="py-24 bg-white">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-[900px] mx-auto px-6">
 
         {/* Header */}
         <div className="text-center mb-14">
@@ -73,7 +73,7 @@ export default function FAQ() {
           {visibleFaqs.map((faq, i) => (
             <div
               key={i}
-              className={`border transition-all duration-300 ${
+              className={`border rounded-xl overflow-hidden transition-all duration-300 ${
                 open === i
                   ? 'border-[#b8973e]/60 shadow-[0_4px_20px_rgba(184,151,62,0.12)]'
                   : 'border-[#e8e0d4] hover:border-[#b8973e]/40'

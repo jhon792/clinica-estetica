@@ -70,7 +70,7 @@ export default function WhyUs() {
         backgroundSize: '60px 60px',
       }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-6 relative z-10">
 
         {/* Header */}
         <div className="mb-16 text-center">

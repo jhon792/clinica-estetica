@@ -12,7 +12,7 @@ const features = [
 export default function About() {
   return (
     <section id="nosotros" className="py-24 bg-[#0f0d0b] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Left: Images composition */}

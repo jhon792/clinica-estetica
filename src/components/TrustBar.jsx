@@ -40,7 +40,7 @@ const items = [
 export default function TrustBar() {
   return (
     <div className="bg-[#0f0d0b] py-7">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-[#2a2420]">
           {items.map((item, i) => (
             <div key={i} className="flex items-center gap-4 lg:px-8 first:pl-0 last:pr-0">

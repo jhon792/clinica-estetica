@@ -47,7 +47,7 @@ const reviews = [
 function ReviewCard({ r }) {
   return (
     <article
-      className="bg-white border border-[#e8e0d4] hover:border-[#b8973e]/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-400 p-7 group"
+      className="bg-white border border-[#e8e0d4] hover:border-[#b8973e]/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-400 p-7 group rounded-xl"
       itemScope
       itemType="https://schema.org/Review"
     >
@@ -115,7 +115,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonios" className="py-24 bg-[#f9f6f0]">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-6">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">

@@ -50,7 +50,7 @@ export default function ConsultationBar() {
 
   return (
     <section id="consulta" className="bg-[#f9f6f0] border-y border-[#e8e0d4]">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-[1440px] mx-auto px-6 py-12">
 
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
 

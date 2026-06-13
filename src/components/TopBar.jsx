@@ -14,7 +14,7 @@ const socials = [
 export default function TopBar() {
   return (
     <div className="w-full bg-[#f9f6f0] border-b border-[#e8e0d4]">
-      <div className="max-w-7xl mx-auto px-6 h-10 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-6 h-10 flex items-center justify-between">
 
         <div className="hidden md:flex items-center gap-5">
           <a

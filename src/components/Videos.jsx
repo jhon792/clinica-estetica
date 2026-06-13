@@ -14,7 +14,7 @@ const videos = [
 export default function Videos() {
   return (
     <section id="videos" className="py-24 bg-[#f9f6f0]">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-6">
 
         {/* Header */}
         <div className="mb-14">

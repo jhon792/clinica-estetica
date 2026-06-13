@@ -28,7 +28,7 @@ const posts = [
 function BlogCard({ post, featured }) {
   if (featured) {
     return (
-      <article className="group col-span-1 md:col-span-2 flex flex-col md:flex-row overflow-hidden bg-white border border-[#e8e0d4] hover:border-[#b8973e]/50 hover:shadow-[0_12px_50px_rgba(0,0,0,0.10)] transition-all duration-400">
+      <article className="group col-span-1 md:col-span-2 flex flex-col md:flex-row overflow-hidden rounded-xl bg-white border border-[#e8e0d4] hover:border-[#b8973e]/50 hover:shadow-[0_12px_50px_rgba(0,0,0,0.10)] transition-all duration-400">
         <div className="relative md:w-1/2 h-64 md:h-auto overflow-hidden bg-[#f9f6f0] shrink-0">
           <img
             src={post.image}
@@ -68,7 +68,7 @@ function BlogCard({ post, featured }) {
   }
 
   return (
-    <article className="group bg-white border border-[#e8e0d4] hover:border-[#b8973e]/50 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] transition-all duration-400 flex flex-col overflow-hidden">
+    <article className="group bg-white border border-[#e8e0d4] hover:border-[#b8973e]/50 hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] transition-all duration-400 flex flex-col overflow-hidden rounded-xl">
       <div className="relative h-52 overflow-hidden bg-[#f9f6f0] shrink-0">
         <img
           src={post.image}
@@ -112,7 +112,7 @@ export default function Blog() {
 
   return (
     <section id="blog" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-6">
 
         {/* Header */}
         <div className="mb-14">

@@ -46,7 +46,7 @@ export default function Footer() {
 
       {/* Location + Map */}
       <div className="border-b border-[#1e1a17]">
-        <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-[1440px] mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* Address */}
           <div>
@@ -108,7 +108,7 @@ export default function Footer() {
           </div>
 
           {/* Map */}
-          <div className="relative h-[360px] overflow-hidden border border-[#2a2420]">
+          <div className="relative h-[360px] overflow-hidden rounded-xl border border-[#2a2420]">
             <iframe
               title="Ubicación Clínica — Barcelona, Bogotá"
               src="https://maps.google.com/maps?q=Barcelona+Bogot%C3%A1+Colombia&output=embed&hl=es&z=15"
@@ -125,7 +125,7 @@ export default function Footer() {
       </div>
 
       {/* Links */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-[1440px] mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
         {/* Brand */}
         <div className="lg:col-span-1">
@@ -230,7 +230,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-[#1e1a17]">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-[1440px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[10px] font-medium tracking-wide text-[#3a3330]">
             © 2026 Clínica Estética Premium · Bogotá, Colombia, Colombia
           </p>

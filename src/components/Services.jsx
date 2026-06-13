@@ -105,7 +105,7 @@ function ServiceCard({ service, defaultImgFocus = 'center 50%' }) {
     <article
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      className="bg-white border border-[#e8e0d4] hover:border-[#b8973e]/60 hover:shadow-[0_12px_40px_rgba(0,0,0,0.10)] transition-all duration-400 flex flex-col overflow-hidden group"
+      className="bg-white border border-[#e8e0d4] hover:border-[#b8973e]/60 hover:shadow-[0_12px_40px_rgba(0,0,0,0.10)] transition-all duration-400 flex flex-col overflow-hidden group rounded-xl"
     >
       {/* Image */}
       <div className="relative h-80 overflow-hidden bg-[#f9f6f0] shrink-0">
@@ -221,7 +221,7 @@ export default function Services() {
 
   return (
     <section id="servicios" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-6">
 
         {/* Header */}
         <div className="mb-12">
