@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import ConsultationBar from './components/ConsultationBar'
 import BodyWellness from './components/BodyWellness'
+import BeforeAfter from './components/BeforeAfter'
 import Services from './components/Services'
 import WhyUs from './components/WhyUs'
 import Videos from './components/Videos'
@@ -25,6 +26,7 @@ export default function App() {
         <TrustBar />
         <ConsultationBar />
         <BodyWellness />
+        <BeforeAfter />
         <Services />
         <WhyUs />
         <Videos />
