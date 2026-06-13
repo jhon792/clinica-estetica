@@ -41,33 +41,31 @@ const pillars = [
 
 export default function BodyWellness() {
   return (
-    <section className="bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+    <section className="overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
 
-          {/* Imagen */}
-          <div className="relative overflow-hidden lg:min-h-full min-h-[420px] order-2 lg:order-1">
-            <img
-              src="/fotos/Resultados de cirugía estética_ cambios sorprendentes.jpg"
-              alt="Resultados de cirugía estética y bienestar corporal"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 25%' }}
-              loading="lazy"
-            />
-            {/* Overlay sutil para separación */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/10 pointer-events-none" />
+        {/* Imagen — mitad izquierda full-bleed */}
+        <div className="relative overflow-hidden lg:min-h-full min-h-[420px] order-2 lg:order-1 bg-white">
+          <img
+            src="/fotos/Resultados de cirugía estética_ cambios sorprendentes.jpg"
+            alt="Resultados de cirugía estética y bienestar corporal"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 25%' }}
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#f9f6f0]/20 pointer-events-none" />
 
-            {/* Stat flotante */}
-            <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm border border-[#e8e0d4] px-5 py-4 shadow-lg">
-              <p className="text-[28px] font-extrabold text-[#b8973e] leading-none font-serif">92%</p>
-              <p className="text-[11px] font-medium text-[#6b7280] mt-1 leading-tight max-w-[140px]">
-                de pacientes nota mejoras desde la primera sesión
-              </p>
-            </div>
+          {/* Stat flotante */}
+          <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm border border-[#e8e0d4] px-5 py-4 shadow-lg">
+            <p className="text-[28px] font-extrabold text-[#b8973e] leading-none font-serif">92%</p>
+            <p className="text-[11px] font-medium text-[#6b7280] mt-1 leading-tight max-w-[140px]">
+              de pacientes nota mejoras desde la primera sesión
+            </p>
           </div>
+        </div>
 
-          {/* Contenido */}
-          <div className="order-1 lg:order-2 flex flex-col justify-center px-8 lg:px-14 py-14 bg-[#f9f6f0]">
+        {/* Contenido — mitad derecha full-bleed crema */}
+        <div className="order-1 lg:order-2 flex flex-col justify-center px-8 lg:px-16 xl:px-24 py-14 bg-[#f9f6f0]">
 
             <div className="flex items-center gap-3 mb-5">
               <span className="w-8 h-px bg-[#b8973e]" />
@@ -126,7 +124,6 @@ export default function BodyWellness() {
 
           </div>
         </div>
-      </div>
     </section>
   )
 }

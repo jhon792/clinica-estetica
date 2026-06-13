@@ -36,10 +36,14 @@ const faqs = [
   },
 ]
 
+const INITIAL_VISIBLE = 3
+
 export default function FAQ() {
   const [open, setOpen] = useState(null)
+  const [showAll, setShowAll] = useState(false)
 
   const toggle = (i) => setOpen(open === i ? null : i)
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, INITIAL_VISIBLE)
 
   return (
     <section id="preguntas-frecuentes" className="py-24 bg-white">
@@ -65,8 +69,8 @@ export default function FAQ() {
         </div>
 
         {/* Accordion */}
-        <div className="space-y-3 mb-14">
-          {faqs.map((faq, i) => (
+        <div className="space-y-3 mb-6">
+          {visibleFaqs.map((faq, i) => (
             <div
               key={i}
               className={`border transition-all duration-300 ${
@@ -107,6 +111,22 @@ export default function FAQ() {
             </div>
           ))}
         </div>
+
+        {/* Ver más / Ver menos */}
+        {!showAll && (
+          <div className="flex justify-center mb-10">
+            <button
+              onClick={() => setShowAll(true)}
+              className="flex items-center gap-2 border-2 border-[#b8973e] text-[#b8973e] hover:bg-[#b8973e] hover:text-white text-[11px] font-bold tracking-[0.12em] uppercase px-8 py-4 transition-all duration-300"
+            >
+              Ver más preguntas
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </button>
+          </div>
+        )}
+        {showAll && <div className="mb-8" />}
 
         {/* Bottom CTA */}
         <div className="bg-[#f9f6f0] border border-[#e8e0d4] p-8 flex flex-col sm:flex-row items-center justify-between gap-5">

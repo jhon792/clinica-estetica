@@ -8,16 +8,12 @@ const SERVICE_IMG = {
   'Armonización facial / Botox full face': '/fotos/Control Botox.jpeg',
   'Labios Ácido Hialurónico':             '/fotos/Labios Ácido Hialurónico.jpeg',
   'Rinomodelación':                       '/fotos/Rinomodelación.jpeg',
-  'Mentón':                               '/fotos/Mentón.jpeg',
-  'Esperma de Salmón':                    '/fotos/Esperma de Salmón.jpeg',
   'Hialuronidasa':                        '/fotos/Hialuronidasa.jpeg',
   'Endolaser Facial':                     '/fotos/Endolaser Facial.jpeg',
   'Limpieza Facial Profunda + Plasma':    '/fotos/Limpieza Facial Profunda.jpeg',
-  'Limpieza Facial Profunda':             '/fotos/Limpieza Facial Profunda.jpeg',
   'Hidratación Labios con Hidrafiller':   '/fotos/Hidratación Labios con Hidrafiller.jpeg',
   'Retoque Labios':                       '/fotos/Retoque Labios.jpeg',
   'Control Botox':                        '/fotos/Control Botox.jpeg',
-  'Valoración Armonización Facial':       '/fotos/Valoración Armonización Facial.jpeg',
 
   // Corporal & Bienestar
   'Péptidos':           UNS('1591384658362-1105c821611c'), // cuerpo esbelto en ropa deportiva
@@ -52,16 +48,12 @@ const categories = [
       { name: 'Armonización facial / Botox full face', duration: '60 min', price: '$850.000', desc: 'Botox premium para un rostro fresco, joven y armonioso.', imgFocus: 'center 18%' },
       { name: 'Labios Ácido Hialurónico', duration: '30 min', price: '$900.000', desc: 'Labios más voluminosos y definidos de forma natural y hidratada.', imgFocus: 'center 62%' },
       { name: 'Rinomodelación', duration: '60 min', price: '$850.000', desc: 'Define y eleva tu nariz sin cirugía con resultados inmediatos.', imgFocus: 'center 40%' },
-      { name: 'Mentón', duration: '30 min', price: '$850.000', desc: 'Proyecta tu perfil y armoniza tu rostro con precisión milimétrica.', imgFocus: 'center 65%' },
-      { name: 'Esperma de Salmón', duration: '30 min', price: '$1.200.000', desc: 'Tres sesiones para regeneración celular profunda y bioestimulación.' },
       { name: 'Hialuronidasa', duration: '20 min', price: '$150.000', desc: 'Disuelve o ajusta ácido hialurónico previo de forma segura.' },
       { name: 'Endolaser Facial', duration: '120 min', price: '$1.500.000', desc: 'Tecnología láser para rejuvenecimiento facial profundo y duradero.' },
       { name: 'Limpieza Facial Profunda + Plasma', duration: '60 min', price: '$150.000', desc: 'Limpieza profesional potenciada con plasma rico en plaquetas.' },
-      { name: 'Limpieza Facial Profunda', duration: '60 min', price: '$100.000', desc: 'Limpieza intensiva para una piel radiante y libre de impurezas.' },
       { name: 'Hidratación Labios con Hidrafiller', duration: '20 min', price: '$150.000', desc: 'Hidratación profunda y volumen natural para unos labios perfectos.', imgFocus: 'center 62%' },
       { name: 'Retoque Labios', duration: '30 min', price: '$450.000', desc: 'Perfecciona y mantiene los resultados de tratamientos previos.', imgFocus: 'center 62%' },
       { name: 'Control Botox', duration: '30 min', price: '$50.000', desc: 'Seguimiento y ajuste preciso de tratamientos de botox anteriores.', imgFocus: 'center 18%' },
-      { name: 'Valoración Armonización Facial', duration: '30 min', price: '$50.000', desc: 'Consulta diagnóstica personalizada para planificar tu tratamiento.' },
     ],
   },
   {
@@ -118,17 +110,21 @@ function ServiceCard({ service, defaultImgFocus = 'center 50%' }) {
       {/* Image */}
       <div className="relative h-80 overflow-hidden bg-[#f9f6f0] shrink-0">
         {img ? (
-          <img
-            src={img}
-            alt={service.name}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-700"
+          <div
+            className="absolute inset-0 transition-transform duration-700"
             style={{
-              transform: hov ? 'scale(1.10)' : 'scale(1)',
-              objectPosition: imgFocus,
+              transform: hov ? 'scale(1.08)' : 'scale(1.0)',
               transformOrigin: imgFocus,
             }}
-          />
+          >
+            <img
+              src={img}
+              alt={service.name}
+              loading="lazy"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: imgFocus }}
+            />
+          </div>
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -176,6 +172,46 @@ function ServiceCard({ service, defaultImgFocus = 'center 50%' }) {
         </div>
       </div>
     </article>
+  )
+}
+
+const MOBILE_LIMIT = 6
+
+function MobileExpandableGrid({ services, imgFocus }) {
+  const [showAll, setShowAll] = useState(false)
+  const visible = showAll ? services : services.slice(0, MOBILE_LIMIT)
+  const hasMore = services.length > MOBILE_LIMIT
+
+  return (
+    <>
+      {/* Desktop: always all */}
+      <div className="hidden sm:grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        {services.map(svc => (
+          <ServiceCard key={svc.name} service={svc} defaultImgFocus={imgFocus} />
+        ))}
+      </div>
+
+      {/* Mobile: limited + Ver más */}
+      <div className="grid sm:hidden grid-cols-1 gap-5">
+        {visible.map(svc => (
+          <ServiceCard key={svc.name} service={svc} defaultImgFocus={imgFocus} />
+        ))}
+        {hasMore && (
+          <button
+            onClick={() => setShowAll(v => !v)}
+            className="flex items-center justify-center gap-2 border-2 border-[#b8973e] text-[#b8973e] text-[11px] font-bold tracking-[0.12em] uppercase px-6 py-4 transition-all duration-300 hover:bg-[#b8973e] hover:text-white"
+          >
+            {showAll ? 'Ver menos' : `Ver más (${services.length - MOBILE_LIMIT} más)`}
+            <svg
+              width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+              style={{ transform: showAll ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }}
+            >
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        )}
+      </div>
+    </>
   )
 }
 
@@ -234,11 +270,7 @@ export default function Services() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-          {active.services.map(svc => (
-            <ServiceCard key={svc.name} service={svc} defaultImgFocus={active.imgFocus} />
-          ))}
-        </div>
+        <MobileExpandableGrid services={active.services} imgFocus={active.imgFocus} />
 
         {/* Bottom CTA */}
         <div className="mt-12 pt-10 border-t border-[#e8e0d4] flex flex-col sm:flex-row items-center justify-between gap-4">
