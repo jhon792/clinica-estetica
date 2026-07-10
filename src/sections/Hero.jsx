@@ -60,10 +60,10 @@ export default function Hero() {
       className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-ivory pt-28 md:pt-32"
     >
       {/* ── Fondo inmersivo — solo móvil/tablet ──
-          En pantallas estrechas el retrato vive DETRÁS del texto. Un velo de
-          marfil, denso arriba y transparente abajo, mantiene el titular
-          perfectamente legible y deja que el rostro emerja al pie. El plano
-          de escritorio (a la derecha) se oculta aquí. */}
+          En pantallas estrechas el retrato vive DETRÁS del texto. El velo de
+          marfil es ahora ligero: la foto se ve nítida en toda su altura y solo
+          queda el tono justo para que el titular oscuro conserve el contraste.
+          El plano de escritorio (a la derecha) se oculta aquí. */}
       <div className="absolute inset-0 lg:hidden" aria-hidden="true">
         <div ref={mphoto} className="absolute inset-0 will-change-transform">
           <Img
@@ -79,7 +79,7 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(180deg, var(--color-ivory) 0%, var(--color-ivory) 30%, color-mix(in srgb, var(--color-ivory) 86%, transparent) 48%, color-mix(in srgb, var(--color-ivory) 42%, transparent) 74%, color-mix(in srgb, var(--color-ivory) 30%, transparent) 88%, color-mix(in srgb, var(--color-ivory) 55%, transparent) 100%)',
+              'linear-gradient(180deg, color-mix(in srgb, var(--color-ivory) 60%, transparent) 0%, color-mix(in srgb, var(--color-ivory) 48%, transparent) 40%, color-mix(in srgb, var(--color-ivory) 34%, transparent) 68%, color-mix(in srgb, var(--color-ivory) 10%, transparent) 88%, transparent 100%)',
           }}
         />
       </div>
