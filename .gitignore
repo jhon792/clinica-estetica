@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Auditoría local (capturas y scratch)
+screenshots

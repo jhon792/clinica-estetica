@@ -1,50 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <!-- Página principal -->
+<!--
+  Una sola página, una sola URL. Las anclas (#especialidades, #reserva…) no son
+  recursos indexables por separado: declararlas aquí solo diluye el rastreo.
+  Cuando el sitio crezca a /procedimientos/[slug], cada uno tendrá su <url>.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://clinicaesteticabogota.com/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://marbre.co/</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="es-CO" href="https://clinicaesteticabogota.com/"/>
   </url>
-
-  <!-- Secciones internas (anchors) -->
-  <url>
-    <loc>https://clinicaesteticabogota.com/#servicios</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://clinicaesteticabogota.com/#nosotros</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://clinicaesteticabogota.com/#blog</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://clinicaesteticabogota.com/#preguntas-frecuentes</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://clinicaesteticabogota.com/#contacto</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
 </urlset>

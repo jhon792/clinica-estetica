@@ -1,224 +1,175 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CO">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ═══════════════════════════════════════
-         SEO PRIMARIO — Clínica Estética Bogotá
-    ═══════════════════════════════════════ -->
-    <title>Clínica Estética Bogotá | Botox · Armonización Facial · Endolaser</title>
-    <meta name="description" content="Clínica de medicina estética en Bogotá. Especialistas en armonización facial, botox, labios con ácido hialurónico, endolaser y cirugía estética. 12+ años · 4.9★ Google · Consulta gratis." />
-    <!-- MEJORA SEO: meta keywords eliminado — Google lo ignora y revela estrategia a competidores -->
-    <!-- MEJORA SEO: canonical sin tilde (dominio correcto para indexación) -->
-    <link rel="canonical" href="https://clinicaesteticabogota.com/" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="author" content="Clínica Estética Premium Bogotá" />
+    <title>Marbre · Cirugía Plástica en Bogotá | Dra. Valentina Restrepo</title>
+    <meta name="description" content="Instituto de cirugía plástica en Bogotá. Rinoplastia ultrasónica, lifting facial profundo y contorno corporal. Una sola cirugía por jornada. 18 años, 0,4% de tasa de revisión." />
+    <link rel="canonical" href="https://marbre.co/" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#12100E" media="(prefers-color-scheme: dark)" />
 
-    <!-- ═══════════════════════════════════════
-         GEO META — SEO Local Bogotá
-    ═══════════════════════════════════════ -->
+    <!-- ── Rendimiento ─────────────────────────────────────────
+         Las fuentes se precargan porque el LCP es texto (el titular del
+         hero). Sin `crossorigin` el navegador las descargaría dos veces.
+         Cero conexiones a terceros: no hay CDN de fuentes ni de scripts. -->
+    <link rel="preload" href="/fonts/zodiak-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/switzer-300.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" href="/img/hero.avif" type="image/avif" fetchpriority="high" />
+
+    <!-- ── SEO local ─────────────────────────────────────────── -->
     <meta name="geo.region" content="CO-DC" />
-    <meta name="geo.placename" content="Bogotá, Bogotá D.C., Colombia" />
-    <meta name="geo.position" content="4.7110;-74.0721" />
-    <meta name="ICBM" content="4.7110, -74.0721" />
-    <meta name="language" content="es-CO" />
+    <meta name="geo.placename" content="Bogotá, Colombia" />
+    <meta name="geo.position" content="4.6683;-74.0530" />
+    <meta name="ICBM" content="4.6683, -74.0530" />
 
-    <!-- ═══════════════════════════════════════
-         OPEN GRAPH — Compartir en redes sociales
-    ═══════════════════════════════════════ -->
+    <!-- ── Open Graph ────────────────────────────────────────── -->
     <meta property="og:type" content="website" />
-    <!-- MEJORA SEO: og:url sin tilde -->
-    <meta property="og:url" content="https://clinicaesteticabogota.com/" />
-    <meta property="og:title" content="Clínica Estética Bogotá | Medicina Estética de Vanguardia" />
-    <meta property="og:description" content="Tu clínica de confianza en Bogotá. Armonización facial, botox, labios, endolaser y cirugía estética. Reserva tu consulta gratis hoy." />
-    <meta property="og:image" content="https://clinicaesteticabogota.com/fotos/portada.jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <!-- MEJORA SEO: og:image:type para crawlers sociales -->
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:url" content="https://marbre.co/" />
+    <meta property="og:site_name" content="Marbre" />
     <meta property="og:locale" content="es_CO" />
-    <meta property="og:site_name" content="Clínica Estética Premium Bogotá" />
+    <meta property="og:title" content="Marbre · Instituto de Cirugía Plástica, Bogotá" />
+    <meta property="og:description" content="La cirugía que nadie advierte. Una sola cirugía por jornada, una sola cirujana." />
+    <meta property="og:image" content="https://marbre.co/img/hero.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="736" />
+    <meta property="og:image:height" content="1104" />
+    <meta property="og:image:alt" content="Sala de valoración del instituto Marbre en Bogotá" />
 
-    <!-- ═══════════════════════════════════════
-         TWITTER CARD
-    ═══════════════════════════════════════ -->
+    <!-- ── Twitter ───────────────────────────────────────────── -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Clínica Estética Premium Bogotá" />
-    <meta name="twitter:description" content="Medicina estética de vanguardia en Bogotá. Botox, labios, endolaser y más. Reserva gratis." />
-    <meta name="twitter:image" content="https://clinicaesteticabogota.com/fotos/portada.jpeg" />
-    <!-- MEJORA SEO: Twitter image alt para accesibilidad en redes -->
-    <meta name="twitter:image:alt" content="Clínica Estética Premium Bogotá" />
+    <meta name="twitter:title" content="Marbre · Instituto de Cirugía Plástica, Bogotá" />
+    <meta name="twitter:description" content="La cirugía que nadie advierte." />
+    <meta name="twitter:image" content="https://marbre.co/img/hero.jpg" />
+    <meta name="twitter:image:alt" content="Sala de valoración del instituto Marbre en Bogotá" />
 
-    <!-- MEJORA SEO: theme-color para barra del navegador en móvil -->
-    <meta name="theme-color" content="#0f0d0b" />
-
-    <!-- ═══════════════════════════════════════
-         PERFORMANCE — Preload recursos críticos
-    ═══════════════════════════════════════ -->
-    <link rel="preload" as="image" href="/fotos/portada.jpeg" fetchpriority="high" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-    <!-- ═══════════════════════════════════════
-         SCHEMA.ORG — LocalBusiness + MedicalClinic
-    ═══════════════════════════════════════ -->
+    <!-- ── Schema.org ────────────────────────────────────────
+         Un solo @graph con nodos enlazados por @id. Google prefiere un grafo
+         conectado a tres bloques sueltos que se ignoran entre sí. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": ["LocalBusiness", "MedicalClinic"],
-      "@id": "https://clinicaesteticabogota.com/#organization",
-      "name": "Clínica Estética Premium Bogotá",
-      "alternateName": ["Clínica Estética Bogotá", "Medicina Estética Bogotá"],
-      "description": "Clínica de medicina estética avanzada en Bogotá. Especialistas en armonización facial, botox, labios con ácido hialurónico, endolaser corporal y facial, cirugía estética y más. Más de 12 años de experiencia y 2.500+ pacientes atendidos.",
-      "url": "https://clinicaesteticabogota.com",
-      "logo": "https://clinicaesteticabogota.com/favicon.svg",
-      "image": [
-        "https://clinicaesteticabogota.com/fotos/portada.jpeg",
-        "https://clinicaesteticabogota.com/fotos/doctora.jpeg"
-      ],
-      "telephone": "+573001234567",
-      "email": "info@clinicaestetica.co",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Cra. 43 #18-101",
-        "addressLocality": "Bogotá",
-        "addressRegion": "Bogotá D.C.",
-        "postalCode": "500001",
-        "addressCountry": "CO"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 4.7110,
-        "longitude": -74.0721
-      },
-      "openingHoursSpecification": [
+      "@graph": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-          "opens": "08:00",
-          "closes": "19:00"
+          "@type": ["MedicalClinic", "LocalBusiness"],
+          "@id": "https://marbre.co/#clinica",
+          "name": "Marbre · Instituto de Cirugía Plástica",
+          "url": "https://marbre.co/",
+          "description": "Instituto de cirugía plástica estética en Bogotá. Rinoplastia ultrasónica, lifting facial profundo, contorno corporal y medicina regenerativa.",
+          "image": "https://marbre.co/img/hero.jpg",
+          "logo": "https://marbre.co/favicon.svg",
+          "telephone": "+573001234567",
+          "email": "consulta@marbre.co",
+          "priceRange": "$$$$",
+          "currenciesAccepted": "COP",
+          "medicalSpecialty": "PlasticSurgery",
+          "isAcceptingNewPatients": true,
+          "availableLanguage": ["es", "en"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Carrera 11 # 82-01, Piso 9",
+            "addressLocality": "Bogotá",
+            "addressRegion": "Bogotá D.C.",
+            "postalCode": "110221",
+            "addressCountry": "CO"
+          },
+          "geo": { "@type": "GeoCoordinates", "latitude": 4.6683, "longitude": -74.0530 },
+          "areaServed": [
+            { "@type": "City", "name": "Bogotá" },
+            { "@type": "Country", "name": "Colombia" }
+          ],
+          "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          }],
+          "employee": { "@id": "https://marbre.co/#cirujana" },
+          "sameAs": ["https://instagram.com/marbre.clinica"],
+          "availableService": [
+            { "@type": "MedicalProcedure", "name": "Rinoplastia ultrasónica", "procedureType": "https://schema.org/SurgicalProcedure" },
+            { "@type": "MedicalProcedure", "name": "Lifting facial profundo", "procedureType": "https://schema.org/SurgicalProcedure" },
+            { "@type": "MedicalProcedure", "name": "Lipoescultura de alta definición", "procedureType": "https://schema.org/SurgicalProcedure" },
+            { "@type": "MedicalProcedure", "name": "Cirugía mamaria", "procedureType": "https://schema.org/SurgicalProcedure" },
+            { "@type": "MedicalProcedure", "name": "Armonización facial", "procedureType": "https://schema.org/NoninvasiveProcedure" },
+            { "@type": "MedicalProcedure", "name": "Medicina regenerativa", "procedureType": "https://schema.org/NoninvasiveProcedure" }
+          ]
         },
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "09:00",
-          "closes": "16:00"
-        }
-      ],
-      "priceRange": "$$",
-      "currenciesAccepted": "COP",
-      "paymentAccepted": "Cash, Credit Card, Transferencia",
-      "areaServed": [
-        { "@type": "City", "name": "Bogotá" },
-        { "@type": "State", "name": "Bogotá D.C." }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "500",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "hasMap": "https://maps.google.com/?q=Cra.+43+%2318-101,+Bogotá,+Meta",
-      "sameAs": [
-        "https://instagram.com/clinicaesteticabogotá",
-        "https://facebook.com/clinicaesteticabogotá"
-      ],
-      "medicalSpecialty": "Aesthetic Medicine",
-      "availableService": [
-        { "@type": "MedicalProcedure", "name": "Armonización Facial", "procedureType": "NoninvasiveProcedure" },
-        { "@type": "MedicalProcedure", "name": "Botox Full Face", "procedureType": "NoninvasiveProcedure" },
-        { "@type": "MedicalProcedure", "name": "Labios Ácido Hialurónico", "procedureType": "NoninvasiveProcedure" },
-        { "@type": "MedicalProcedure", "name": "Rinomodelación", "procedureType": "NoninvasiveProcedure" },
-        { "@type": "MedicalProcedure", "name": "Endolaser Facial", "procedureType": "NoninvasiveProcedure" },
-        { "@type": "MedicalProcedure", "name": "Endolaser Corporal", "procedureType": "NoninvasiveProcedure" },
-        { "@type": "MedicalProcedure", "name": "Depilación Láser", "procedureType": "NoninvasiveProcedure" },
-        { "@type": "MedicalProcedure", "name": "Liposucción", "procedureType": "SurgicalProcedure" },
-        { "@type": "MedicalProcedure", "name": "Rinoplastia", "procedureType": "SurgicalProcedure" }
-      ]
-    }
-    </script>
-
-    <!-- MEJORA SEO: FAQPage con 5 preguntas clave para Featured Snippets -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "¿El botox duele?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No duele casi nada. Se aplica con una aguja muy fina y el procedimiento dura entre 10 y 20 minutos. La mayoría de pacientes describe solo una leve molestia pasajera. Si lo prefiere, aplicamos crema anestésica antes del tratamiento."
-          }
+          "@type": "Physician",
+          "@id": "https://marbre.co/#cirujana",
+          "name": "Dra. Valentina Restrepo",
+          "image": "https://marbre.co/img/cirujana.jpg",
+          "jobTitle": "Cirujana Plástica",
+          "medicalSpecialty": "PlasticSurgery",
+          "worksFor": { "@id": "https://marbre.co/#clinica" },
+          "alumniOf": [
+            { "@type": "CollegeOrUniversity", "name": "Universidad Nacional de Colombia" },
+            { "@type": "CollegeOrUniversity", "name": "Hospital Universitario La Paz, Madrid" }
+          ],
+          "memberOf": { "@type": "Organization", "name": "Sociedad Colombiana de Cirugía Plástica" }
         },
         {
-          "@type": "Question",
-          "name": "¿Cuánto duran los resultados del botox?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Los resultados del botox duran entre 4 y 6 meses. Con retoques periódicos, muchos pacientes notan que los efectos se prolongan con el tiempo. Recomendamos una cita de control al mes para asegurar resultados óptimos."
-          }
+          "@type": "WebSite",
+          "@id": "https://marbre.co/#sitio",
+          "url": "https://marbre.co/",
+          "name": "Marbre",
+          "inLanguage": "es-CO",
+          "publisher": { "@id": "https://marbre.co/#clinica" }
         },
         {
-          "@type": "Question",
-          "name": "¿La consulta inicial tiene algún costo?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "La consulta de valoración tiene un costo de $50.000 COP, que se descuenta del tratamiento si decide realizárselo. En ella hacemos un diagnóstico personalizado, análisis de proporciones faciales y diseñamos su plan de tratamiento."
-          }
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://marbre.co/" },
+            { "@type": "ListItem", "position": 2, "name": "Especialidades", "item": "https://marbre.co/#especialidades" },
+            { "@type": "ListItem", "position": 3, "name": "Antes y después", "item": "https://marbre.co/#comparador" },
+            { "@type": "ListItem", "position": 4, "name": "Reserva", "item": "https://marbre.co/#reserva" }
+          ]
         },
         {
-          "@type": "Question",
-          "name": "¿Qué debo evitar antes de un procedimiento estético?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Se recomienda evitar alcohol 48 horas antes del procedimiento, antiinflamatorios como ibuprofeno o aspirina durante la semana previa, y asistir sin maquillaje. Para cirugías, el médico indica con anticipación los medicamentos que debe suspender."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Los procedimientos son seguros?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, completamente. Todos nuestros procedimientos son realizados por médicos titulados con más de 12 años de experiencia. Usamos únicamente productos aprobados por INVIMA y seguimos los protocolos de bioseguridad del Ministerio de Salud de Colombia."
-          }
+          "@type": "FAQPage",
+          "@id": "https://marbre.co/#preguntas",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuánto cuesta la consulta de valoración?",
+              "acceptedAnswer": { "@type": "Answer", "text": "La consulta tiene un valor de $450.000 COP y dura noventa minutos. Incluye simulación tridimensional Vectra y se descuenta íntegramente del procedimiento si decide operarse con nosotros. No agendamos más de cuatro valoraciones al día." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuándo veré el resultado definitivo?",
+              "acceptedAnswer": { "@type": "Answer", "text": "El edema inicial cede entre la segunda y la cuarta semana, y a los tres meses el resultado es socialmente presentable. El resultado definitivo aparece a los doce meses en rinoplastia y a los nueve en cirugía corporal." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo operarme si vengo de fuera de Colombia?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Sí. Coordinamos la valoración inicial por videoconsulta y gestionamos alojamiento, traslados y acompañamiento clínico. Requerimos una estancia mínima de diez días postoperatorios en Bogotá antes de autorizar un vuelo." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué pasa si no soy candidata?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Se lo diremos en la primera consulta y le devolveremos el importe íntegro. Aproximadamente uno de cada cinco pacientes recibe la recomendación de no operarse, o de esperar." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Quién realiza la cirugía?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Siempre la Dra. Valentina Restrepo, sin excepción y sin cirujanos en formación. Opera un único procedimiento por jornada quirúrgica, acompañada de anestesiólogo de planta e instrumentadora fija." }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Es seguro operarse en Colombia?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Lo es cuando el cirujano está certificado por la Sociedad Colombiana de Cirugía Plástica y opera en quirófano habilitado. Verifique siempre el registro de su cirujano antes de reservar cualquier vuelo." }
+            }
+          ]
         }
       ]
     }
     </script>
-
-    <!-- ═══════════════════════════════════════
-         SCHEMA.ORG — BreadcrumbList
-    ═══════════════════════════════════════ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://clinicaesteticabogota.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Tratamientos", "item": "https://clinicaesteticabogota.com/#servicios" },
-        { "@type": "ListItem", "position": 3, "name": "Nosotros", "item": "https://clinicaesteticabogota.com/#nosotros" },
-        { "@type": "ListItem", "position": 4, "name": "Contacto", "item": "https://clinicaesteticabogota.com/#contacto" }
-      ]
-    }
-    </script>
-    <!-- MEJORA SEO: Google Tag Manager — reemplaza GTM-XXXXXXX con tu ID real de GTM -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
   </head>
   <body>
-    <!-- MEJORA SEO: Google Tag Manager (noscript) — reemplaza GTM-XXXXXXX con tu ID real de GTM -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

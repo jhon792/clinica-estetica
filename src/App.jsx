@@ -1,67 +1,71 @@
+import { useEffect } from 'react'
 import './index.css'
-import TopBar from './components/TopBar'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import TrustBar from './components/TrustBar'
-import ConsultationBar from './components/ConsultationBar'
-import BodyWellness from './components/BodyWellness'
-import BeforeAfter from './components/BeforeAfter'
-import Services from './components/Services'
-import WhyUs from './components/WhyUs'
-import Videos from './components/Videos'
-import FAQ from './components/FAQ'
-import Blog from './components/Blog'
-import Testimonials from './components/Testimonials'
-import About from './components/About'
-import Footer from './components/Footer'
-import { WA_MSG_DEFAULT, waLink } from './config'
+
+import { initSmoothScroll, ScrollTrigger } from './lib/motion'
+import Cursor from './components/Cursor'
+import Nav from './sections/Nav'
+import Hero from './sections/Hero'
+import Philosophy from './sections/Philosophy'
+import Surgeon from './sections/Surgeon'
+import Results from './sections/Results'
+import Comparator from './sections/Comparator'
+import Specialties from './sections/Specialties'
+import Process from './sections/Process'
+import Facilities from './sections/Facilities'
+import Technology from './sections/Technology'
+import Testimonials from './sections/Testimonials'
+import FAQ from './sections/FAQ'
+import Booking from './sections/Booking'
+import Footer from './sections/Footer'
+import WhatsApp from './components/WhatsApp'
 
 export default function App() {
-  return (
-    <div className="min-h-screen">
-      <TopBar />
-      <Header />
-      <main>
-        <Hero />
-        <TrustBar />
-        <ConsultationBar />
-        <BodyWellness />
-        <BeforeAfter />
-        <Services />
-        <WhyUs />
-        <Videos />
-        <FAQ />
-        <Blog />
-        <Testimonials />
-        <About />
-      </main>
-      <Footer />
+  useEffect(() => {
+    const destroy = initSmoothScroll()
 
-      {/* WhatsApp flotante con mensaje pre-llenado — embudo SEO → WA → Cita */}
-      {/* MEJORA SEO: evento gtag para tracking de clics — requiere GTM/GA4 configurado */}
+    // Las secciones fijadas calculan sus distancias a partir de la altura del
+    // documento. Esa altura cambia cuando terminan de cargar las fuentes (el
+    // texto se recompone) y las imágenes diferidas. Sin este refresco, los pins
+    // arrancan y terminan en el sitio equivocado.
+    const refresh = () => ScrollTrigger.refresh()
+    document.fonts?.ready.then(refresh)
+    window.addEventListener('load', refresh)
+
+    return () => {
+      window.removeEventListener('load', refresh)
+      destroy?.()
+    }
+  }, [])
+
+  return (
+    <div className="grain">
       <a
-        href={waLink(WA_MSG_DEFAULT)}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Contactar por WhatsApp — Clínica Estética Bogotá"
-        title="Escríbenos por WhatsApp"
-        onClick={() => {
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'whatsapp_click', {
-              event_category: 'engagement',
-              event_label: 'boton_flotante',
-            })
-          }
-        }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] transition-all duration-300 hover:scale-110 group"
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-ink focus:px-6 focus:py-3 focus:text-[11px] focus:tracking-[0.2em] focus:uppercase focus:text-ivory"
       >
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        <span className="absolute right-16 bg-[#1a1612] text-white text-[10px] font-bold px-3 py-1.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-          ¡Escríbenos!
-        </span>
+        Saltar al contenido
       </a>
+
+      <Cursor />
+      <Nav />
+
+      <main id="contenido">
+        <Hero />
+        <Philosophy />
+        <Surgeon />
+        <Results />
+        <Comparator />
+        <Specialties />
+        <Process />
+        <Facilities />
+        <Technology />
+        <Testimonials />
+        <FAQ />
+        <Booking />
+      </main>
+
+      <Footer />
+      <WhatsApp />
     </div>
   )
 }

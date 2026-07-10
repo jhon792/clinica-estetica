@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
 
-# Bloquear archivos de desarrollo innecesarios
-Disallow: /src/
-Disallow: /*.json$
-
-Sitemap: https://clinicaesteticavillavicencio.com/sitemap.xml
+Sitemap: https://marbre.co/sitemap.xml

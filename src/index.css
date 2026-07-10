@@ -1,88 +1,194 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
-
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --gold: #b8973e;
-    --gold-light: #d4af6a;
-    --gold-pale: #f5efe0;
-    --white: #ffffff;
-    --cream: #f9f6f0;
-    --dark: #0f0d0b;
-    --text: #1a1612;
-    --muted: #6b7280;
-    --border: #e8e0d4;
-  }
+/* ═══════════════════════════════════════════════════════════
+   TIPOGRAFÍA — auto-hospedada, sin round-trip a CDN externo
+   Zodiak   → display serif de alto contraste (familia de Canela)
+   Switzer  → grotesk neutro (equivalente libre de Suisse Int'l)
+   ═══════════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/zodiak-300.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/zodiak-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer-300.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer-500.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+@theme {
+  /* ── Paleta ──────────────────────────────────────────────
+     Sin degradados, sin saturación. Todo es luz sobre materia.
+
+     Ningún gris sirve a la vez sobre marfil y sobre negro: el que cumple
+     contraste en uno, lo incumple en el otro. Por eso van en pares, y cada
+     ratio está medido contra su fondo (WCAG AA, texto pequeño = 4.5:1).
+     ──────────────────────────────────────────────────────── */
+  --color-ivory:      #FBFAF7;   /* blanco cálido, fondo maestro */
+  --color-paper:      #F3F0E9;   /* marfil */
+  --color-sand:       #E4DED1;   /* arena — solo superficies, nunca texto */
+  --color-ink:        #12100E;   /* negro profundo */
+
+  --color-ash:        #8B877F;   /* palabra aún no leída, solo texto grande 3.4:1 */
+  --color-stone:      #6E685F;   /* gris piedra · texto menor sobre claro  5.3:1 */
+  --color-mist:       #ADA69A;   /* su gemelo   · texto menor sobre oscuro 8.4:1 */
+  --color-slate-ink:  #55504A;   /* párrafos sobre claro                   7.4:1 */
+
+  --color-champagne:  #C0A268;   /* acento sobre oscuro y filetes          8.3:1 */
+  --color-brass:      #806327;   /* el mismo acento, legible sobre claro   5.4:1 */
+  --color-signal:     #8C3A2E;   /* error. Terracota, nunca rojo semáforo  7.5:1 */
+
+  --font-display: 'Zodiak', 'Canela', 'Times New Roman', serif;
+  --font-sans: 'Switzer', 'Suisse Int\'l', 'Neue Haas Grotesk', 'Inter', system-ui, sans-serif;
+
+  /* Curvas de movimiento. Ninguna es lineal ni ease-in-out. */
+  --ease-lux:   cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-mask:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-glide: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; padding: 0; }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis gobierna el scroll. `scroll-behavior: smooth` pelearía con él. */
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    font-family: 'Montserrat', 'Inter', sans-serif;
-    background-color: #ffffff;
-    color: #1a1612;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    font-synthesis-weight: none;
   }
 
-  #root {
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
+  ::selection { background: var(--color-ink); color: var(--color-ivory); }
+
+  /* El cursor propio sustituye al del sistema solo en punteros finos. */
+  @media (pointer: fine) {
+    body, a, button { cursor: none; }
   }
+
+  img { display: block; max-width: 100%; }
+
+  /* Foco visible: obligatorio para el 100 de Accessibility. */
+  :focus-visible {
+    outline: 1px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+  :focus:not(:focus-visible) { outline: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   REVELADO POR MÁSCARA
+   Cada línea vive en una caja con overflow oculto; el texto sube
+   desde debajo del borde. Es la diferencia entre "aparecer" y "entrar".
+   ═══════════════════════════════════════════════════════════ */
+.mask-line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.mask-line > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1.15s var(--ease-mask);
+  transition-delay: var(--d, 0ms);
+  will-change: transform;
+}
+.is-in .mask-line > span { transform: translateY(0); }
+
+/* Entrada pesada: desenfoque + desplazamiento. Nunca aparición seca. */
+.rise {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(6px);
+  transition: opacity 1s var(--ease-lux), transform 1.1s var(--ease-lux), filter 1s var(--ease-lux);
+  transition-delay: var(--d, 0ms);
+}
+.is-in.rise, .is-in .rise { opacity: 1; transform: none; filter: blur(0); }
+
+/* Filete que se dibuja desde la izquierda al entrar en viewport. */
+.rule { transform: scaleX(0); transform-origin: left; transition: transform 1.4s var(--ease-lux); transition-delay: var(--d, 0ms); }
+.is-in.rule, .is-in .rule { transform: scaleX(1); }
 
 @layer utilities {
-  .font-serif {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+  /* Grano de película. Fijo, pointer-events-none: cero repintados al hacer scroll. */
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: -100%;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 6s steps(6) infinite;
+  }
+  @keyframes grain {
+    0%,100% { transform: translate(0,0) }
+    16% { transform: translate(-2%, 1%) }
+    33% { transform: translate(1%, -2%) }
+    50% { transform: translate(-1%, 2%) }
+    66% { transform: translate(2%, 1%) }
+    83% { transform: translate(1%, -1%) }
   }
 
-  .gold-gradient {
-    background: linear-gradient(135deg, #b8973e 0%, #d4af6a 50%, #b8973e 100%);
+  /* El color se hereda de `--eyebrow`. Una clase de Tailwind (`text-mist`) no
+     puede sobrescribir a `.eyebrow` de forma fiable: ambas son utilidades y
+     gana la que el compilador emita más tarde. Con una variable, la sección
+     oscura declara su gris y todos los rótulos de dentro lo obedecen. */
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--eyebrow, var(--color-stone));
   }
 
-  .text-gold {
-    color: #b8973e;
+  /* Cualquier sección sobre tinta. Invierte los grises de texto menor. */
+  .on-dark { --eyebrow: var(--color-mist); }
+
+  .hairline { border-color: color-mix(in srgb, var(--color-ink) 10%, transparent); }
+
+  /* Numeración editorial: tabular para que las columnas no bailen. */
+  .num { font-variant-numeric: tabular-nums; }
+}
+
+/* Scrollbar: presente pero casi invisible. */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--color-ink) 18%, transparent); }
+
+/* ═══════════════════════════════════════════════════════════
+   El movimiento es una elección estética, no un requisito.
+   Quien pide quietud, recibe quietud — y todo sigue legible.
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-
-  .bg-gold {
-    background-color: #b8973e;
-  }
-}
-
-/* Smooth scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #f9f6f0;
-}
-::-webkit-scrollbar-thumb {
-  background: #b8973e;
-  border-radius: 3px;
-}
-
-/* Input focus */
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: #b8973e !important;
-  box-shadow: 0 0 0 3px rgba(184,151,62,0.08);
-}
-
-/* Custom select arrow */
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8973e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px !important;
+  .mask-line > span { transform: none !important; }
+  .rise { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .rule { transform: scaleX(1) !important; }
+  .grain::after { animation: none; }
+  @media (pointer: fine) { body, a, button { cursor: auto; } }
 }
