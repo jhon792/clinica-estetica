@@ -8,6 +8,7 @@ export default function Hero() {
   const root = useRef(null)
   const plate = useRef(null)
   const photo = useRef(null)
+  const mphoto = useRef(null)
 
   useEffect(() => {
     // El hero no espera al observador: se revela en cuanto pinta.
@@ -37,6 +38,16 @@ export default function Hero() {
       )
       // Respiración de apertura: 2,6 s. Nadie la nota; todos la sienten.
       gsap.from(photo.current, { scale: 1.2, duration: 2.6, ease: 'expo.out' })
+
+      // Fondo móvil: misma respiración de apertura + parallax al hacer scroll.
+      if (mphoto.current) {
+        gsap.from(mphoto.current, { scale: 1.16, duration: 2.6, ease: 'expo.out' })
+        gsap.to(mphoto.current, {
+          yPercent: 8,
+          ease: 'none',
+          scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: 1.2 },
+        })
+      }
     }, root)
     return () => ctx.revert()
   }, [])
@@ -45,9 +56,35 @@ export default function Hero() {
     <section
       ref={root}
       id="inicio"
-      className="relative min-h-[100dvh] overflow-hidden bg-ivory pt-28 md:pt-32"
+      data-cursor-bg="light"
+      className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-ivory pt-28 md:pt-32"
     >
-      <div className="mx-auto grid max-w-[1560px] grid-cols-1 items-center gap-y-14 px-6 md:px-10 lg:grid-cols-[1.06fr_0.94fr] lg:gap-x-16 xl:gap-x-24">
+      {/* ── Fondo inmersivo — solo móvil/tablet ──
+          En pantallas estrechas el retrato vive DETRÁS del texto. Un velo de
+          marfil, denso arriba y transparente abajo, mantiene el titular
+          perfectamente legible y deja que el rostro emerja al pie. El plano
+          de escritorio (a la derecha) se oculta aquí. */}
+      <div className="absolute inset-0 lg:hidden" aria-hidden="true">
+        <div ref={mphoto} className="absolute inset-0 will-change-transform">
+          <Img
+            src="hero"
+            alt=""
+            priority
+            sizes="100vw"
+            className="h-full w-full object-cover"
+            style={{ objectPosition: '50% 22%' }}
+          />
+        </div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(180deg, var(--color-ivory) 0%, var(--color-ivory) 30%, color-mix(in srgb, var(--color-ivory) 86%, transparent) 48%, color-mix(in srgb, var(--color-ivory) 42%, transparent) 74%, color-mix(in srgb, var(--color-ivory) 30%, transparent) 88%, color-mix(in srgb, var(--color-ivory) 55%, transparent) 100%)',
+          }}
+        />
+      </div>
+
+      <div className="mx-auto grid w-full max-w-[1560px] grid-cols-1 items-start gap-y-14 px-6 md:px-10 lg:grid-cols-[1.06fr_0.94fr] lg:items-center lg:gap-x-16 xl:gap-x-24">
 
         {/* ── Columna tipográfica ── */}
         <div className="relative z-10 lg:pb-16">
@@ -82,6 +119,7 @@ export default function Hero() {
             <button
               onClick={() => scrollTo('#reserva')}
               data-cursor="link"
+              data-cursor-bg="dark"
               className="rise group flex items-center gap-4 rounded-full bg-ink py-2.5 pl-8 pr-2.5 text-ivory transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97]"
               style={{ '--d': '880ms' }}
             >
@@ -104,13 +142,10 @@ export default function Hero() {
             </button>
           </div>
 
-          <div className="rise mt-16 flex items-center gap-6 lg:hidden" style={{ '--d': '1100ms' }}>
-            <p className="eyebrow">{SURGEON_TITLE}</p>
-          </div>
         </div>
 
-        {/* ── Plancha fotográfica ── */}
-        <div ref={plate} className="relative">
+        {/* ── Plancha fotográfica — solo escritorio ── */}
+        <div ref={plate} className="relative hidden lg:block">
           <figure className="relative ml-auto w-full max-w-[560px]">
             {/* Sin `rise`, a propósito. Esta plancha es el elemento LCP: un
                 fade de opacidad retrasaría la métrica hasta que terminase la

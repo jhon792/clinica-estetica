@@ -18,7 +18,7 @@ export default function FAQ() {
     <section id="preguntas" ref={root} className="relative bg-paper py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="mb-14 md:mb-20">
-          <SectionMark index="X" label="Preguntas" />
+          <SectionMark index="XI" label="Preguntas" />
           <h2 className="mt-10 max-w-[16ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-light leading-[1.04] tracking-[-0.02em]">
             <Lines lines={['Lo que otras', 'clínicas evitan', 'responder.']} step={110} />
           </h2>

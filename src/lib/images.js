@@ -31,4 +31,6 @@ export const DIMS = {
   'ba/contorno-despues': [354, 711],
   'ba/mamaria-antes': [324, 674],
   'ba/mamaria-despues': [319, 665],
+  'video/consejos-callejas': [480, 270],
+  'video/tips-pita': [1280, 720],
 }

@@ -9,6 +9,7 @@ const LINKS = [
   { id: 'especialidades', label: 'Especialidades' },
   { id: 'proceso', label: 'Proceso' },
   { id: 'instalaciones', label: 'Instalaciones' },
+  { id: 'peliculas', label: 'En Movimiento' },
   { id: 'preguntas', label: 'Preguntas' },
 ]
 
@@ -87,6 +88,7 @@ export default function Nav() {
             <button
               onClick={() => go('reserva')}
               data-cursor="link"
+              data-cursor-bg="dark"
               className="group hidden items-center gap-3 rounded-full bg-ink py-2 pl-6 pr-2 text-ivory transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97] md:flex"
             >
               <span className="text-[10px] tracking-[0.2em] uppercase">Reservar</span>
@@ -119,6 +121,7 @@ export default function Nav() {
 function Overlay({ open, onClose, go }) {
   return (
     <div
+      data-cursor-bg="dark"
       className={`on-dark fixed inset-0 z-50 ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
       aria-hidden={!open}
     >

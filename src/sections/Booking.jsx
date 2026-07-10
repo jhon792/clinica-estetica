@@ -84,7 +84,7 @@ export default function Booking() {
   return (
     <section id="reserva" ref={root} className="relative bg-ivory py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
-        <SectionMark index="XI" label="Reserva" />
+        <SectionMark index="XII" label="Reserva" />
 
         <div className="mt-14 grid grid-cols-1 gap-y-16 md:mt-20 lg:grid-cols-12 lg:gap-x-20">
           {/* Contexto */}
@@ -170,6 +170,7 @@ export default function Booking() {
                   <button
                     type="submit"
                     data-cursor="link"
+                    data-cursor-bg="dark"
                     className="group flex items-center gap-4 rounded-full bg-ink py-3 pl-8 pr-3 text-ivory transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-ink/90 active:scale-[0.97] disabled:opacity-40"
                   >
                     <span className="text-[10px] tracking-[0.22em] uppercase">Enviar solicitud</span>

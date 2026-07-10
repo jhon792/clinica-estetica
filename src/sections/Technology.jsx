@@ -11,7 +11,7 @@ export default function Technology() {
   const root = useReveal({ threshold: 0.08 })
 
   return (
-    <section id="tecnologia" ref={root} className="on-dark relative overflow-hidden bg-ink py-28 md:py-40">
+    <section id="tecnologia" ref={root} data-cursor-bg="dark" className="on-dark relative overflow-hidden bg-ink py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div>
           <SectionMark index="VIII" label="Tecnología" />

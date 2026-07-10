@@ -31,6 +31,19 @@ export const SOCIALS = [
   { key: 'tiktok', label: 'TikTok', href: TIKTOK },
 ]
 
+// Colores oficiales de cada red. Se aplican SOLO en hover (fondo de marca +
+// icono blanco), para que el reposo siga siendo monocromo y elegante.
+// `hoverBg` acepta color o degradado; el glitch cian/rosa de TikTok se maneja
+// aparte en el componente.
+export const BRAND = {
+  instagram: {
+    hoverBg: 'linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)',
+  },
+  facebook: { hoverBg: '#1877F2' },
+  tiktok: { hoverBg: '#010101' },
+  whatsapp: { hoverBg: '#25D366' },
+}
+
 export const waLink = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`
 
 export const WA_MSG_DEFAULT = `Buenas tardes. Me gustaría solicitar una consulta de valoración en ${CLINIC_NAME}.`
@@ -204,6 +217,26 @@ export const CASES = [
     before: 'ba/rinoplastia-antes',
     after: 'ba/rinoplastia-despues',
     note: 'Reducción de giba dorsal. La imagen corresponde a los primeros días: el hematoma y la sutura de la columela son propios de esta fase y desaparecen antes del tercer mes.',
+  },
+]
+
+// ── Vídeos ─────────────────────────────────────────────────
+// Fachada "lite": se muestra la miniatura (auto-hospedada) y el iframe de
+// YouTube solo se inserta al pulsar. Cero peticiones a YouTube en la carga.
+export const VIDEOS = [
+  {
+    id: 'Xvyz9POcOYc',
+    thumb: 'video/tips-pita',
+    kicker: 'Preparación',
+    title: 'Ocho decisiones antes de operarse',
+    author: 'Criterio quirúrgico · 6 min',
+  },
+  {
+    id: 'zobCkNxt_M0',
+    thumb: 'video/consejos-callejas',
+    kicker: 'Consulta',
+    title: 'Cinco preguntas que debe hacer a su cirujano',
+    author: 'Antes de la valoración · 8 min',
   },
 ]
 

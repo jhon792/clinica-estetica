@@ -14,6 +14,7 @@ import Process from './sections/Process'
 import Facilities from './sections/Facilities'
 import Technology from './sections/Technology'
 import Testimonials from './sections/Testimonials'
+import Videos from './sections/Videos'
 import FAQ from './sections/FAQ'
 import Booking from './sections/Booking'
 import Footer from './sections/Footer'
@@ -60,6 +61,7 @@ export default function App() {
         <Facilities />
         <Technology />
         <Testimonials />
+        <Videos />
         <FAQ />
         <Booking />
       </main>

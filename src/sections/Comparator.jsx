@@ -143,7 +143,7 @@ export default function Comparator() {
   const c = CASES[index]
 
   return (
-    <section id="comparador" ref={root} className="on-dark relative bg-ink py-24 lg:min-h-[100dvh] lg:py-0">
+    <section id="comparador" ref={root} data-cursor-bg="dark" className="on-dark relative bg-ink py-24 lg:min-h-[100dvh] lg:py-0">
       <div className="flex min-h-full flex-col justify-center py-8 lg:py-24">
         <div ref={head} className="mx-auto w-full max-w-[1560px] px-6 md:px-10">
           <div>

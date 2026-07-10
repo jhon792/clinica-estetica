@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useReveal } from '../hooks/useReveal'
 import { scrollTo } from '../lib/motion'
-import SocialIcon from '../components/SocialIcon'
+import SocialIcon, { GoogleMapsIcon } from '../components/SocialIcon'
 import {
   CLINIC_LEGAL, SURGEON, EMAIL, PHONE, ADDRESS, CITY,
-  GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED, SOCIALS, waLink, WA_MSG_DEFAULT,
+  GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED, SOCIALS, BRAND, waLink, WA_MSG_DEFAULT,
 } from '../config'
 
 const COLS = [
@@ -33,7 +33,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer ref={root} className="on-dark relative overflow-hidden bg-ink pt-24 md:pt-32">
+    <footer ref={root} data-cursor-bg="dark" className="on-dark relative overflow-hidden bg-ink pt-24 md:pt-32">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="grid grid-cols-2 gap-y-14 md:grid-cols-12 md:gap-x-10">
           <div className="col-span-2 md:col-span-4">
@@ -117,9 +117,21 @@ export default function Footer() {
                   rel="noreferrer"
                   data-cursor="link"
                   aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-mist ring-1 ring-ivory/15 transition-all duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-ivory hover:text-ink hover:ring-ivory"
+                  className="group/soc relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full text-mist ring-1 ring-ivory/15 transition-all duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] hover:ring-transparent"
                 >
-                  <SocialIcon name={s.key} size={17} />
+                  <span
+                    className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/soc:opacity-100"
+                    style={{ background: BRAND[s.key].hoverBg }}
+                  />
+                  <SocialIcon
+                    name={s.key}
+                    size={17}
+                    className={`relative transition-[color,filter] duration-500 group-hover/soc:text-white ${
+                      s.key === 'tiktok'
+                        ? 'group-hover/soc:[filter:drop-shadow(1.4px_0_0_#FE2C55)_drop-shadow(-1.4px_0_0_#25F4EE)]'
+                        : ''
+                    }`}
+                  />
                 </a>
               ))}
             </div>
@@ -214,15 +226,16 @@ function MapPanel() {
 
   return (
     <div ref={ref} className="rise mt-20 md:mt-28" style={{ '--d': '120ms' }}>
-      <div className="mb-5 flex items-baseline justify-between">
+      <div className="mb-5 flex items-center justify-between">
         <p className="eyebrow">Cómo llegar</p>
         <a
           href={GOOGLE_MAPS_URL}
           target="_blank"
           rel="noreferrer"
           data-cursor="link"
-          className="group relative text-[10px] tracking-[0.2em] uppercase text-mist transition-colors hover:text-ivory"
+          className="group relative flex items-center gap-2.5 text-[10px] tracking-[0.2em] uppercase text-mist transition-colors hover:text-ivory"
         >
+          <GoogleMapsIcon size={15} className="transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110" />
           Abrir en Google Maps
           <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-ivory/50 transition-transform duration-[700ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-x-100" />
         </a>

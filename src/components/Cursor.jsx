@@ -1,13 +1,24 @@
 import { useEffect, useRef } from 'react'
 
+const INK = '#12100E'
+const IVORY = '#FBFAF7'
+
 /**
- * Cursor propio. Dos cuerpos con inercias distintas: un punto que sigue al
- * ratón sin retardo y un anillo que llega tarde. Esa diferencia de fase es
- * lo que se lee como peso físico.
+ * Cursor propio, adaptativo y determinista.
  *
- * Se monta solo en punteros finos. En táctil no existe.
+ * En lugar de mezclar colores (mix-blend), que sobre tonos medios da grises
+ * ambiguos, el cursor lee bajo el puntero el ancestro más cercano con
+ * `data-cursor-bg` y elige un color sólido:
+ *   · fondo claro  → cursor NEGRO
+ *   · fondo oscuro → cursor BLANCO
+ * La transición de color es suave (250 ms) para que el cambio no salte. Esto
+ * garantiza contraste real en cualquier sección — clave para baja visión.
+ *
+ * Dos cuerpos con inercias distintas (punto sólido + anillo rezagado) dan la
+ * sensación de peso. Se monta solo en punteros finos; en táctil no existe.
  */
 export default function Cursor() {
+  const layer = useRef(null)
   const ring = useRef(null)
   const dot = useRef(null)
   const label = useRef(null)
@@ -21,25 +32,36 @@ export default function Cursor() {
     const ringPos = { ...pos }
     let scale = 1
     let targetScale = 1
+    let mode = 'light'
     let raf
 
     const onMove = (e) => {
       pos.x = e.clientX
       pos.y = e.clientY
-      // El punto es solidario al ratón: cero interpolación.
       dot.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`
     }
 
+    const readMode = () => {
+      // La capa es pointer-events-none, así que elementFromPoint devuelve el
+      // contenido de debajo, no el propio cursor.
+      const el = document.elementFromPoint(pos.x, pos.y)
+      const ctx = el?.closest('[data-cursor-bg]')
+      const next = ctx?.getAttribute('data-cursor-bg') === 'dark' ? 'dark' : 'light'
+      if (next !== mode) {
+        mode = next
+        layer.current.style.color = mode === 'dark' ? IVORY : INK
+      }
+    }
+
     const tick = () => {
-      // lerp: el anillo persigue, nunca alcanza del todo.
       ringPos.x += (pos.x - ringPos.x) * 0.14
       ringPos.y += (pos.y - ringPos.y) * 0.14
       scale += (targetScale - scale) * 0.16
       ring.current.style.transform =
         `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) scale(${scale})`
-      // El rótulo viaja con el anillo, pero no se escala con él.
       label.current.style.transform =
         `translate3d(${ringPos.x}px, ${ringPos.y + 34}px, 0) translateX(-50%)`
+      readMode()
       raf = requestAnimationFrame(tick)
     }
 
@@ -75,31 +97,23 @@ export default function Cursor() {
   }, [])
 
   return (
-    // El contraste lo garantiza `mix-blend-difference` con blanco PURO en cada
-    // cuerpo: la mezcla por diferencia es |fondo − 255|, que sobre marfil da
-    // casi negro y sobre tinta da casi blanco. El bug anterior venía de un
-    // blanco al 50%, que sobre fondo claro daba un gris invisible. Con opacidad
-    // plena el cursor nunca se pierde — cumple el contraste para baja visión.
-    // El blend va en cada elemento, no en el contenedor: así se mezcla contra
-    // la página y no contra una capa aislada.
     <div
+      ref={layer}
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-[70] hidden [@media(pointer:fine)]:block"
+      style={{ color: INK }}
     >
       <div
         ref={ring}
-        className="absolute -ml-4 -mt-4 h-8 w-8 rounded-full border-[1.5px] mix-blend-difference"
-        style={{ borderColor: '#ffffff' }}
+        className="absolute -ml-4 -mt-4 h-8 w-8 rounded-full border-[1.5px] border-current transition-colors duration-200"
       />
       <div
         ref={dot}
-        className="absolute -ml-[3px] -mt-[3px] h-1.5 w-1.5 rounded-full mix-blend-difference"
-        style={{ background: '#ffffff' }}
+        className="absolute -ml-[3px] -mt-[3px] h-1.5 w-1.5 rounded-full bg-current transition-colors duration-200"
       />
       <div
         ref={label}
-        className="absolute left-0 top-0 whitespace-nowrap text-[9px] tracking-[0.28em] uppercase opacity-0 transition-opacity duration-300 mix-blend-difference"
-        style={{ color: '#ffffff' }}
+        className="absolute left-0 top-0 whitespace-nowrap text-[9px] tracking-[0.28em] uppercase text-current opacity-0 transition-[opacity,color] duration-200"
       />
     </div>
   )
