@@ -171,10 +171,22 @@
   .num { font-variant-numeric: tabular-nums; }
 }
 
-/* Scrollbar: presente pero casi invisible. */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--color-ink) 18%, transparent); }
+/* ── Barra de desplazamiento ──────────────────────────────
+   Visible pero sobria: 12 px, pulgar en tinta suave con forma de píldora y un
+   borde de marfil que lo separa del riel. Se oscurece al pasar el cursor.
+   Firefox usa las dos propiedades estándar (`scrollbar-width/color`). */
+html {
+  scrollbar-width: auto;
+  scrollbar-color: color-mix(in srgb, var(--color-ink) 34%, transparent) var(--color-paper);
+}
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--color-paper); }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-ink) 34%, transparent);
+  border-radius: 999px;
+  border: 3px solid var(--color-paper);
+}
+::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--color-ink) 55%, transparent); }
 
 /* ═══════════════════════════════════════════════════════════
    El movimiento es una elección estética, no un requisito.

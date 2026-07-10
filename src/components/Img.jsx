@@ -1,9 +1,15 @@
 import { DIMS } from '../lib/images'
 
 /**
- * Negociación de formato en el propio HTML: el navegador coge AVIF si lo
- * entiende, WebP si no, y JPEG como red de seguridad. Sin JavaScript de por
- * medio, así que funciona antes de que hidrate React.
+ * Negociación de formato en el propio HTML: WebP primero, JPEG como red de
+ * seguridad. Sin JavaScript de por medio, funciona antes de que hidrate React.
+ *
+ * Se retiró AVIF a propósito: varios navegadores móviles (Chrome antiguo en
+ * Android, y sobre todo los navegadores in-app de WhatsApp/Instagram) aceptan
+ * el <source type="image/avif"> pero fallan al decodificar y NO caen al
+ * siguiente <source> — la imagen queda en blanco. WebP tiene soporte universal
+ * (iOS 14+, todo Android moderno) y aquí pesa incluso menos que el AVIF, así
+ * que quitarlo elimina el fallo sin coste.
  *
  * `priority` solo debe marcarse en la imagen que forma el LCP. Marcarlas
  * todas equivale a no marcar ninguna.
@@ -22,7 +28,6 @@ export default function Img({
     // `display: contents` disuelve el <picture>: el <img> hereda directamente
     // la caja del padre, así que h-full/object-cover se comportan como se espera.
     <picture className="contents">
-      <source srcSet={`/img/${src}.avif`} type="image/avif" sizes={sizes} />
       <source srcSet={`/img/${src}.webp`} type="image/webp" sizes={sizes} />
       <img
         src={`/img/${src}.jpg`}

@@ -43,10 +43,11 @@ const RENAME_BA = {
 }
 
 async function emit(inPath, outBase) {
+  // Solo WebP + JPEG. Se descartó AVIF: navegadores in-app y Android antiguos
+  // aceptan su <source> pero fallan al decodificar, dejando la imagen en blanco.
   const img = sharp(inPath)
   const { width, height } = await img.metadata()
   await Promise.all([
-    img.clone().avif({ quality: 62, effort: 6 }).toFile(`${outBase}.avif`),
     img.clone().webp({ quality: 78 }).toFile(`${outBase}.webp`),
     img.clone().jpeg({ quality: 82, mozjpeg: true }).toFile(`${outBase}.jpg`),
   ])

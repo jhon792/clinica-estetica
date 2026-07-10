@@ -71,14 +71,13 @@ function VideoCard({ video, index }) {
             aria-label={`Reproducir: ${video.title}`}
             className="absolute inset-0 h-full w-full"
           >
-            {/* Las miniaturas originales de YouTube son estridentes. En reposo
-                van en monocromo para integrarse en la paleta; el color regresa
-                al pasar el cursor, justo cuando el usuario va a reproducir. */}
+            {/* Miniaturas a todo color desde la carga. El velo inferior las
+                integra en la sección sin restarles el color del vídeo. */}
             <Img
               src={video.thumb}
               alt={`Miniatura del vídeo: ${video.title}`}
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="h-full w-full scale-[1.03] object-cover object-center transition-[transform,filter] duration-[1600ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-100 [filter:grayscale(1)_contrast(0.9)_brightness(0.72)] group-hover:[filter:grayscale(0)_contrast(1)_brightness(0.9)]"
+              className="h-full w-full scale-[1.03] object-cover object-center transition-transform duration-[1600ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-100"
             />
             {/* Velo cinematográfico: banda oscura densa abajo para que el rótulo
                 propio domine y el texto incrustado de la miniatura se hunda. */}

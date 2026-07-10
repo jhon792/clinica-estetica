@@ -117,18 +117,15 @@ export default function Footer() {
                   rel="noreferrer"
                   data-cursor="link"
                   aria-label={s.label}
-                  className="group/soc relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full text-mist ring-1 ring-ivory/15 transition-all duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] hover:ring-transparent"
+                  className="group/soc relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ring-1 ring-white/15 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-105"
+                  style={{ background: BRAND[s.key].hoverBg }}
                 >
-                  <span
-                    className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/soc:opacity-100"
-                    style={{ background: BRAND[s.key].hoverBg }}
-                  />
                   <SocialIcon
                     name={s.key}
                     size={17}
-                    className={`relative transition-[color,filter] duration-500 group-hover/soc:text-white ${
+                    className={`relative text-white ${
                       s.key === 'tiktok'
-                        ? 'group-hover/soc:[filter:drop-shadow(1.4px_0_0_#FE2C55)_drop-shadow(-1.4px_0_0_#25F4EE)]'
+                        ? '[filter:drop-shadow(1.4px_0_0_#FE2C55)_drop-shadow(-1.4px_0_0_#25F4EE)]'
                         : ''
                     }`}
                   />
@@ -138,8 +135,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Mapa: monocromo para no romper la paleta. Diferido, y solo se
-            carga cuando entra en viewport — un iframe de Maps es pesado. */}
+        {/* Mapa de Google a todo color. Diferido: solo se carga cuando entra
+            en viewport — un iframe de Maps es pesado. */}
         <MapPanel />
 
         {/* Logotipo a sangre: la última palabra de la página. Va en SVG, no en
@@ -204,10 +201,7 @@ export default function Footer() {
  * viewport: montarlo de entrada añadiría cientos de KB y peticiones a terceros
  * a una carga que hemos peleado por mantener en 222 KB. Hasta entonces se ve
  * una plancha con la dirección, que además es lo que aparece si el usuario
- * bloquea contenido de Google.
- *
- * El filtro monocromo alinea el mapa con la paleta; se retira en hover para
- * que la lectura de calles sea nítida cuando el usuario va a usarlo de verdad.
+ * bloquea contenido de Google. El mapa se muestra con sus colores originales.
  */
 function MapPanel() {
   const ref = useRef(null)
@@ -248,10 +242,7 @@ function MapPanel() {
             src={GOOGLE_MAPS_EMBED}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="h-full w-full border-0 opacity-95 transition-all duration-[900ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:opacity-100"
-            style={{ filter: 'grayscale(1) contrast(0.95)' }}
-            onMouseEnter={(e) => { e.currentTarget.style.filter = 'grayscale(0) contrast(1)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.filter = 'grayscale(1) contrast(0.95)' }}
+            className="h-full w-full border-0"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
