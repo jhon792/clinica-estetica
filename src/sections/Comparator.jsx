@@ -3,7 +3,7 @@ import Img from '../components/Img'
 import { DIMS } from '../lib/images'
 import { SectionMark } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
-import { gsap, prefersReducedMotion } from '../lib/motion'
+import { gsap } from '../lib/motion'
 import { CASES } from '../config'
 
 /**
@@ -122,13 +122,16 @@ export default function Comparator() {
     return () => document.removeEventListener('fullscreenchange', onFs)
   }, [])
 
-  // ── El scroll pasa de un caso al siguiente ───────────────
+  // ── El scroll pasa de un caso al siguiente — SOLO escritorio ───
+  // En móvil no se fija la sección: cambiar de caso es tocar la lista y el
+  // divisor se arrastra con el dedo. Fijar una sección alta y ciclar casos con
+  // el scroll táctil resultaba confuso y chocaba con el gesto de arrastre.
   useEffect(() => {
-    if (prefersReducedMotion()) return
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia()
+    mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
       ScrollDrivenIndex(root.current, CASES.length, setIndex)
-    }, root)
-    return () => ctx.revert()
+    })
+    return () => mm.revert()
   }, [])
 
   // ── Teclado ──────────────────────────────────────────────
@@ -189,8 +192,10 @@ export default function Comparator() {
             <div className="lg:col-span-9">
               <div
                 ref={frame}
-                className={`relative mx-auto max-w-full ${
-                  full ? 'flex h-screen w-screen items-center justify-center bg-ink' : 'w-fit'
+                className={`relative mx-auto ${
+                  full
+                    ? 'flex h-screen w-screen items-center justify-center bg-ink'
+                    : 'w-full max-w-[440px] md:w-fit md:max-w-full'
                 }`}
               >
               <div
@@ -205,8 +210,11 @@ export default function Comparator() {
                 onKeyDown={onKey}
                 data-cursor="view"
                 data-cursor-label="Arrastrar"
-                className={`group relative touch-none select-none overflow-hidden bg-[#0a0908] ${
-                  full ? 'h-[94vh] max-w-full' : 'h-[52vh] max-w-full md:h-[64vh] lg:h-[70vh]'
+                // `touch-pan-y`: el arrastre horizontal mueve el divisor, pero
+                // el gesto vertical sigue desplazando la página (en móvil, un
+                // `touch-none` atrapaba el dedo y no dejaba salir de la sección).
+                className={`group relative touch-pan-y select-none overflow-hidden bg-[#0a0908] ${
+                  full ? 'h-[94vh] max-w-full' : 'w-full max-w-full md:h-[64vh] md:w-auto lg:h-[70vh]'
                 }`}
                 // El marco toma la proporción del caso activo en lugar de
                 // imponerle una caja: así la foto lo llena y el divisor barre
