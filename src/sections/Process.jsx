@@ -44,7 +44,7 @@ export default function Process() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <div ref={head}>
-                <SectionMark index="VI" label={t.label} />
+                <SectionMark index="IV" label={t.label} />
                 <h2 className="mt-10 font-display text-[clamp(2rem,4.4vw,3.5rem)] font-light leading-[1.04] tracking-[-0.02em] text-ink">
                   <Lines lines={t.titleLines} step={110} />
                 </h2>

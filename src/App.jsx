@@ -6,7 +6,6 @@ import { initSmoothScroll, ScrollTrigger } from './lib/motion'
 import Cursor from './components/Cursor'
 import Nav from './sections/Nav'
 import Hero from './sections/Hero'
-import Philosophy from './sections/Philosophy'
 import Surgeon from './sections/Surgeon'
 import Results from './sections/Results'
 import Comparator from './sections/Comparator'
@@ -55,7 +54,6 @@ export default function App() {
 
       <main id="contenido">
         <Hero />
-        <Philosophy />
         <Surgeon />
         <Results />
         <Comparator />

@@ -24,7 +24,7 @@ export default function Videos() {
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="mb-14 grid grid-cols-1 items-end gap-8 md:mb-20 md:grid-cols-12">
           <div className="md:col-span-7">
-            <SectionMark index="X" label={t.label} />
+            <SectionMark index="VIII" label={t.label} />
             <h2 className="mt-10 font-display text-[clamp(2rem,4.6vw,3.6rem)] font-light leading-[1.04] tracking-[-0.02em]">
               <Lines lines={t.titleLines} step={110} />
             </h2>

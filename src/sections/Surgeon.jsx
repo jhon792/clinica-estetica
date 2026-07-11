@@ -33,7 +33,7 @@ export default function Surgeon() {
     <section id="cirujana" ref={wrap} className="relative bg-paper py-28 md:py-40">
       <div ref={root} className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="mb-16 md:mb-24">
-          <SectionMark index="II" label={t.label} />
+          <SectionMark index="I" label={t.label} />
         </div>
 
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-12">

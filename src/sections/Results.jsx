@@ -68,7 +68,7 @@ export default function Results() {
     <section id="resultados" ref={root} className="relative overflow-hidden bg-ivory py-24 lg:h-[100dvh] lg:py-0">
       <div className="flex h-full flex-col lg:justify-center">
         <div ref={head} className="mx-auto w-full max-w-[1560px] shrink-0 px-6 md:px-10 lg:pt-24">
-          <SectionMark index="III" label={t.label} />
+          <SectionMark index="II" label={t.label} />
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <h2 className="font-display text-[clamp(2.1rem,5vw,4rem)] font-light leading-[1.02] tracking-[-0.02em]">
               <Lines lines={t.titleLines} step={110} />

@@ -32,7 +32,7 @@ function LangToggle({ compact = false, dark = false }) {
             >
               <Flag
                 code={l.flag}
-                className={`h-[13px] w-[18px] shrink-0 transition-all duration-500 ${on ? 'opacity-100 grayscale-0' : 'opacity-55 grayscale-[0.55] group-hover/lang:opacity-90 group-hover/lang:grayscale-0'}`}
+                className={`h-[17px] w-[24px] shrink-0 transition-all duration-500 ${on ? 'opacity-100 grayscale-0' : 'opacity-55 grayscale-[0.55] group-hover/lang:opacity-90 group-hover/lang:grayscale-0'}`}
               />
               {compact ? l.short : l.label}
             </button>

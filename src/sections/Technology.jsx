@@ -15,7 +15,7 @@ export default function Technology() {
     <section id="tecnologia" ref={root} data-cursor-bg="dark" className="on-dark relative overflow-hidden bg-ink py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div>
-          <SectionMark index="VIII" label={t.label} />
+          <SectionMark index="VI" label={t.label} />
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-y-10 md:mt-20 lg:grid-cols-12">

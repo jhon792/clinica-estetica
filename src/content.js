@@ -26,10 +26,9 @@ const es = {
     skip: 'Saltar al contenido',
     langLabel: 'Idioma',
     links: [
-      { id: 'filosofia', label: 'Filosofía' },
       { id: 'cirujana', label: 'La Cirujana' },
       { id: 'resultados', label: 'Resultados' },
-      { id: 'especialidades', label: 'Especialidades' },
+      { id: 'especialidades', label: 'Procedimientos' },
       { id: 'proceso', label: 'Proceso' },
       { id: 'instalaciones', label: 'Instalaciones' },
       { id: 'peliculas', label: 'En Movimiento' },
@@ -108,14 +107,16 @@ const es = {
 
   specialties: {
     label: 'Especialidades',
+    title: 'Procedimientos',
+    tabs: { facial: 'Faciales', corporal: 'Corporales' },
     cta: 'Consultar este procedimiento',
     items: [
-      { n: '01', name: 'Rinoplastia Ultrasónica', tag: 'Facial', img: 'rinoplastia', body: 'Remodelación ósea por ultrasonido en lugar de osteotomos. Menos hematoma, menos edema, y un dorso que responde al milímetro. La nariz no se rehace: se corrige.' },
-      { n: '02', name: 'Lifting Facial Profundo', tag: 'Facial', img: 'ba/lifting-despues', body: 'Plano profundo sobre el SMAS, reposicionando el tejido en el vector en que descendió. La piel no se tensa — se acompaña de vuelta a su sitio.' },
-      { n: '03', name: 'Armonización Facial', tag: 'No quirúrgico', img: 'armonizacion', body: 'Ácido hialurónico y toxina en cantidades que se cuentan en décimas. El objetivo no es el volumen: es la proporción entre tercios.' },
-      { n: '04', name: 'Lipoescultura de Alta Definición', tag: 'Corporal', img: 'ba/lipoescultura-despues', body: 'Trabajo por capas sobre la anatomía muscular subyacente. Revelamos una estructura que ya existe en lugar de dibujar una que no.' },
-      { n: '05', name: 'Cirugía Mamaria', tag: 'Corporal', img: 'mamaria', body: 'Elección de implante guiada por medidas torácicas, no por catálogo. Plano dual, incisión inframamaria, resultado que envejece bien.' },
-      { n: '06', name: 'Medicina Regenerativa', tag: 'No quirúrgico', img: 'regenerativa', body: 'Polinucleótidos, exosomas y bioestimuladores de colágeno. La piel produce lo que ha dejado de producir. Sin llenar, sin tensar.' },
+      { n: '01', cat: 'facial', name: 'Rinoplastia Ultrasónica', tag: 'Facial', img: 'rinoplastia', body: 'Remodelación ósea por ultrasonido en lugar de osteotomos. Menos hematoma, menos edema, y un dorso que responde al milímetro. La nariz no se rehace: se corrige.' },
+      { n: '02', cat: 'facial', name: 'Lifting Facial Profundo', tag: 'Facial', img: 'ba/lifting-despues', body: 'Plano profundo sobre el SMAS, reposicionando el tejido en el vector en que descendió. La piel no se tensa — se acompaña de vuelta a su sitio.' },
+      { n: '03', cat: 'facial', name: 'Armonización Facial', tag: 'No quirúrgico', img: 'toxina', body: 'Ácido hialurónico y toxina en cantidades que se cuentan en décimas. El objetivo no es el volumen: es la proporción entre tercios.' },
+      { n: '04', cat: 'corporal', name: 'Lipoescultura de Alta Definición', tag: 'Corporal', img: 'ba/lipoescultura-despues', body: 'Trabajo por capas sobre la anatomía muscular subyacente. Revelamos una estructura que ya existe en lugar de dibujar una que no.' },
+      { n: '05', cat: 'corporal', name: 'Cirugía Mamaria', tag: 'Corporal', img: 'mamaria', body: 'Elección de implante guiada por medidas torácicas, no por catálogo. Plano dual, incisión inframamaria, resultado que envejece bien.' },
+      { n: '06', cat: 'facial', name: 'Medicina Regenerativa', tag: 'No quirúrgico', img: 'consulta', body: 'Polinucleótidos, exosomas y bioestimuladores de colágeno. La piel produce lo que ha dejado de producir. Sin llenar, sin tensar.' },
     ],
   },
 
@@ -253,15 +254,15 @@ const es = {
     contact: 'Contacto',
     cols: [
       { title: 'Instituto', items: [
-        { label: 'Filosofía', id: 'filosofia' },
         { label: 'La Cirujana', id: 'cirujana' },
         { label: 'Instalaciones', id: 'instalaciones' },
         { label: 'Tecnología', id: 'tecnologia' },
+        { label: 'Preguntas', id: 'preguntas' },
       ] },
       { title: 'Procedimientos', items: [
         { label: 'Resultados', id: 'resultados' },
         { label: 'Antes y después', id: 'comparador' },
-        { label: 'Especialidades', id: 'especialidades' },
+        { label: 'Procedimientos', id: 'especialidades' },
         { label: 'Proceso', id: 'proceso' },
       ] },
     ],
@@ -299,10 +300,9 @@ const en = {
     skip: 'Skip to content',
     langLabel: 'Language',
     links: [
-      { id: 'filosofia', label: 'Philosophy' },
       { id: 'cirujana', label: 'The Surgeon' },
       { id: 'resultados', label: 'Results' },
-      { id: 'especialidades', label: 'Specialties' },
+      { id: 'especialidades', label: 'Procedures' },
       { id: 'proceso', label: 'Process' },
       { id: 'instalaciones', label: 'Facilities' },
       { id: 'peliculas', label: 'In Motion' },
@@ -379,14 +379,16 @@ const en = {
 
   specialties: {
     label: 'Specialties',
+    title: 'Procedures',
+    tabs: { facial: 'Facial', corporal: 'Body' },
     cta: 'Enquire about this procedure',
     items: [
-      { n: '01', name: 'Ultrasonic Rhinoplasty', tag: 'Facial', img: 'rinoplastia', body: 'Bone reshaping by ultrasound rather than osteotomes. Less bruising, less swelling, and a dorsum that responds to the millimetre. The nose isn’t rebuilt: it’s corrected.' },
-      { n: '02', name: 'Deep Facelift', tag: 'Facial', img: 'ba/lifting-despues', body: 'A deep plane over the SMAS, repositioning tissue along the vector in which it descended. The skin isn’t stretched — it’s guided back into place.' },
-      { n: '03', name: 'Facial Harmonization', tag: 'Non-surgical', img: 'armonizacion', body: 'Hyaluronic acid and toxin in amounts measured in tenths. The goal isn’t volume: it’s the proportion between thirds.' },
-      { n: '04', name: 'High-Definition Liposculpture', tag: 'Body', img: 'ba/lipoescultura-despues', body: 'Layered work over the underlying muscular anatomy. We reveal a structure that already exists rather than drawing one that doesn’t.' },
-      { n: '05', name: 'Breast Surgery', tag: 'Body', img: 'mamaria', body: 'Implant choice guided by chest measurements, not by catalogue. Dual plane, inframammary incision, a result that ages well.' },
-      { n: '06', name: 'Regenerative Medicine', tag: 'Non-surgical', img: 'regenerativa', body: 'Polynucleotides, exosomes and collagen biostimulators. The skin produces what it had stopped producing. No filling, no tightening.' },
+      { n: '01', cat: 'facial', name: 'Ultrasonic Rhinoplasty', tag: 'Facial', img: 'rinoplastia', body: 'Bone reshaping by ultrasound rather than osteotomes. Less bruising, less swelling, and a dorsum that responds to the millimetre. The nose isn’t rebuilt: it’s corrected.' },
+      { n: '02', cat: 'facial', name: 'Deep Facelift', tag: 'Facial', img: 'ba/lifting-despues', body: 'A deep plane over the SMAS, repositioning tissue along the vector in which it descended. The skin isn’t stretched — it’s guided back into place.' },
+      { n: '03', cat: 'facial', name: 'Facial Harmonization', tag: 'Non-surgical', img: 'toxina', body: 'Hyaluronic acid and toxin in amounts measured in tenths. The goal isn’t volume: it’s the proportion between thirds.' },
+      { n: '04', cat: 'corporal', name: 'High-Definition Liposculpture', tag: 'Body', img: 'ba/lipoescultura-despues', body: 'Layered work over the underlying muscular anatomy. We reveal a structure that already exists rather than drawing one that doesn’t.' },
+      { n: '05', cat: 'corporal', name: 'Breast Surgery', tag: 'Body', img: 'mamaria', body: 'Implant choice guided by chest measurements, not by catalogue. Dual plane, inframammary incision, a result that ages well.' },
+      { n: '06', cat: 'facial', name: 'Regenerative Medicine', tag: 'Non-surgical', img: 'consulta', body: 'Polynucleotides, exosomes and collagen biostimulators. The skin produces what it had stopped producing. No filling, no tightening.' },
     ],
   },
 
@@ -524,15 +526,15 @@ const en = {
     contact: 'Contact',
     cols: [
       { title: 'Institute', items: [
-        { label: 'Philosophy', id: 'filosofia' },
         { label: 'The Surgeon', id: 'cirujana' },
         { label: 'Facilities', id: 'instalaciones' },
         { label: 'Technology', id: 'tecnologia' },
+        { label: 'Questions', id: 'preguntas' },
       ] },
       { title: 'Procedures', items: [
         { label: 'Results', id: 'resultados' },
         { label: 'Before & after', id: 'comparador' },
-        { label: 'Specialties', id: 'especialidades' },
+        { label: 'Procedures', id: 'especialidades' },
         { label: 'Process', id: 'proceso' },
       ] },
     ],

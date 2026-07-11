@@ -154,7 +154,7 @@ export default function Comparator() {
       <div className="flex min-h-full flex-col justify-center py-8 lg:py-24">
         <div ref={head} className="mx-auto w-full max-w-[1560px] px-6 md:px-10">
           <div>
-            <SectionMark index="IV" label={tr.label} />
+            <SectionMark index="III" label={tr.label} />
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-y-12 lg:grid-cols-12 lg:gap-x-16">
