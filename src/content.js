@@ -554,6 +554,6 @@ const en = {
 
 export const CONTENT = { es, en }
 export const LANGS = [
-  { code: 'es', label: 'Español', short: 'ES' },
-  { code: 'en', label: 'English', short: 'EN' },
+  { code: 'es', label: 'Español', short: 'ES', flag: 'co' },
+  { code: 'en', label: 'English', short: 'EN', flag: 'gb' },
 ]

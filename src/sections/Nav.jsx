@@ -2,33 +2,43 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { scrollTo } from '../lib/motion'
 import { useContent, useLang } from '../i18n'
 import { LANGS } from '../content'
+import Flag from '../components/Flag'
 import { EMAIL, PHONE, INSTAGRAM, ADDRESS, CITY, waLink } from '../config'
 
-/** Selector de idioma. `dark` invierte los tonos para el overlay. */
+/**
+ * Selector de idioma con bandera. `dark` invierte los tonos para el overlay.
+ * La opción inactiva atenúa su bandera (opacidad + gris) y su texto; la activa
+ * va a todo color. El texto inactivo usa mist/stone para cumplir contraste AA.
+ */
 function LangToggle({ compact = false, dark = false }) {
   const { lang, setLang } = useLang()
   const c = useContent()
   const active = dark ? 'text-ivory' : 'text-ink'
-  // Tonos inactivos que cumplen contraste AA: mist (8.4:1 sobre tinta) y
-  // stone (5.3:1 sobre marfil). El activo destaca igual por ser pleno.
   const idle = dark ? 'text-mist hover:text-ivory' : 'text-stone hover:text-ink'
   const sep = dark ? 'text-ivory/25' : 'text-ink/20'
   return (
-    <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label={c.nav.langLabel}>
-      {LANGS.map((l, i) => (
-        <Fragment key={l.code}>
-          {i > 0 && <span className={`text-[10px] ${sep}`} aria-hidden="true">/</span>}
-          <button
-            onClick={() => setLang(l.code)}
-            data-cursor="link"
-            aria-pressed={lang === l.code}
-            lang={l.code}
-            className={`text-[11px] tracking-[0.14em] uppercase transition-colors duration-500 ${lang === l.code ? active : idle}`}
-          >
-            {compact ? l.short : l.label}
-          </button>
-        </Fragment>
-      ))}
+    <div className="flex shrink-0 items-center gap-2" role="group" aria-label={c.nav.langLabel}>
+      {LANGS.map((l, i) => {
+        const on = lang === l.code
+        return (
+          <Fragment key={l.code}>
+            {i > 0 && <span className={`text-[10px] ${sep}`} aria-hidden="true">/</span>}
+            <button
+              onClick={() => setLang(l.code)}
+              data-cursor="link"
+              aria-pressed={on}
+              lang={l.code}
+              className={`group/lang flex items-center gap-1.5 text-[11px] tracking-[0.14em] uppercase transition-colors duration-500 ${on ? active : idle}`}
+            >
+              <Flag
+                code={l.flag}
+                className={`h-[13px] w-[18px] shrink-0 transition-all duration-500 ${on ? 'opacity-100 grayscale-0' : 'opacity-55 grayscale-[0.55] group-hover/lang:opacity-90 group-hover/lang:grayscale-0'}`}
+              />
+              {compact ? l.short : l.label}
+            </button>
+          </Fragment>
+        )
+      })}
     </div>
   )
 }
