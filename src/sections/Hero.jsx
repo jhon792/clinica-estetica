@@ -2,9 +2,11 @@ import { useEffect, useRef } from 'react'
 import Img from '../components/Img'
 import { Lines } from '../components/Type'
 import { gsap, prefersReducedMotion, scrollTo } from '../lib/motion'
-import { SURGEON_TITLE } from '../config'
+import { useContent } from '../i18n'
 
 export default function Hero() {
+  const c = useContent()
+  const t = c.hero
   const root = useRef(null)
   const plate = useRef(null)
   const photo = useRef(null)
@@ -94,24 +96,22 @@ export default function Hero() {
               style={{ '--d': '120ms' }}
             />
             <span className="rise eyebrow" style={{ '--d': '280ms' }}>
-              Bogotá · Desde 2007
+              {t.eyebrow}
             </span>
           </div>
 
           <h1 className="font-display text-[clamp(2.9rem,8.6vw,7.4rem)] font-light leading-[0.94] tracking-[-0.025em] text-ink">
-            <Lines lines={['La cirugía', 'que nadie']} step={110} start={200} />
+            <Lines lines={t.titleLines} step={110} start={200} />
             <span className="mask-line">
               <span style={{ '--d': '420ms' }} className="block">
-                <em className="not-italic text-stone">advierte.</em>
+                <em className="not-italic text-stone">{t.titleEm}</em>
               </span>
             </span>
           </h1>
 
           <div className="mt-9 max-w-[440px] md:mt-12">
             <p className="rise text-[15px] leading-[1.85] font-light text-slate-ink" style={{ '--d': '520ms' }}>
-              Un solo procedimiento al día. Una sola cirujana. Diecisiete años
-              perfeccionando el arte más difícil de la medicina estética:
-              que el resultado no se vea.
+              {t.body}
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export default function Hero() {
               className="rise group flex items-center gap-4 rounded-full bg-ink py-2.5 pl-8 pr-2.5 text-ivory transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97]"
               style={{ '--d': '880ms' }}
             >
-              <span className="text-[10px] tracking-[0.22em] uppercase">Solicitar valoración</span>
+              <span className="text-[10px] tracking-[0.22em] uppercase">{t.cta}</span>
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ivory/10 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-[3px] group-hover:-translate-y-[1px] group-hover:scale-105 group-hover:bg-ivory/20">
                 <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                   <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
@@ -137,7 +137,7 @@ export default function Hero() {
               className="rise group relative text-[10px] tracking-[0.22em] uppercase text-slate-ink transition-colors duration-500 hover:text-ink"
               style={{ '--d': '980ms' }}
             >
-              Ver resultados reales
+              {t.secondary}
               <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-100 bg-ink/25 transition-transform duration-[700ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:origin-right group-hover:scale-x-0" />
             </button>
           </div>
@@ -169,7 +169,7 @@ export default function Hero() {
             </div>
 
             <figcaption className="rise mt-5 flex items-baseline justify-between gap-6" style={{ '--d': '900ms' }}>
-              <p className="eyebrow">{SURGEON_TITLE}</p>
+              <p className="eyebrow">{c.surgeonTitle}</p>
               <p className="num text-[10px] tracking-[0.2em] text-stone">01 / 06</p>
             </figcaption>
           </figure>
@@ -180,7 +180,7 @@ export default function Hero() {
               className="eyebrow whitespace-nowrap"
               style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
             >
-              Fotografía sin retoque · Paciente real
+              {t.photoLabel}
             </p>
           </div>
         </div>

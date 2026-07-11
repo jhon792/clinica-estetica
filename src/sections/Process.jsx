@@ -2,9 +2,11 @@ import { useEffect, useRef } from 'react'
 import { SectionMark, Lines } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
 import { gsap, prefersReducedMotion } from '../lib/motion'
-import { PROCESS } from '../config'
+import { useContent } from '../i18n'
 
 export default function Process() {
+  const t = useContent().process
+  const PROCESS = t.steps
   const root = useRef(null)
   const line = useRef(null)
   const head = useReveal()
@@ -42,13 +44,12 @@ export default function Process() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <div ref={head}>
-                <SectionMark index="VI" label="Proceso" />
+                <SectionMark index="VI" label={t.label} />
                 <h2 className="mt-10 font-display text-[clamp(2rem,4.4vw,3.5rem)] font-light leading-[1.04] tracking-[-0.02em] text-ink">
-                  <Lines lines={['Cinco meses', 'antes de la', 'primera incisión.']} step={110} />
+                  <Lines lines={t.titleLines} step={110} />
                 </h2>
                 <p className="rise mt-8 max-w-[38ch] text-[14px] leading-[1.9] font-light text-slate-ink" style={{ '--d': '400ms' }}>
-                  La cirugía dura horas. El proceso que la rodea dura un año.
-                  Ninguna de sus fases se acelera por conveniencia de agenda.
+                  {t.intro}
                 </p>
               </div>
             </div>

@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import Img from '../components/Img'
 import { SectionMark } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
-import { SPECIALTIES, waLink, WA_MSG_SERVICE } from '../config'
+import { useContent } from '../i18n'
+import { waLink } from '../config'
 
 /**
  * Un índice, no una parrilla de tarjetas. La imagen no está en el documento:
@@ -10,6 +11,8 @@ import { SPECIALTIES, waLink, WA_MSG_SERVICE } from '../config'
  * donde no hay cursor, cada fila abre su propia lámina al pulsarla.
  */
 export default function Specialties() {
+  const content = useContent()
+  const SPECIALTIES = content.specialties.items
   const root = useReveal({ threshold: 0.05 })
   const list = useRef(null)
   const float = useRef(null)
@@ -50,7 +53,7 @@ export default function Specialties() {
     <section id="especialidades" ref={root} className="relative bg-ivory py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="mb-14 md:mb-20">
-          <SectionMark index="V" label="Especialidades" />
+          <SectionMark index="V" label={content.specialties.label} />
         </div>
 
         <div ref={list} className="relative">
@@ -120,13 +123,13 @@ export default function Specialties() {
                         </p>
                         <div className="md:col-span-3 md:col-start-9">
                           <a
-                            href={waLink(WA_MSG_SERVICE(sp.name))}
+                            href={waLink(content.wa.service(sp.name))}
                             target="_blank"
                             rel="noreferrer"
                             data-cursor="link"
                             className="group/cta relative inline-block text-[10px] tracking-[0.22em] uppercase text-ink"
                           >
-                            Consultar este procedimiento
+                            {content.specialties.cta}
                             <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left bg-ink/30 transition-transform duration-[700ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/cta:origin-right group-hover/cta:scale-x-0" />
                           </a>
                         </div>

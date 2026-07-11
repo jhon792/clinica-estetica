@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { waLink, WA_MSG_DEFAULT, SOCIALS, BRAND } from '../config'
+import { waLink, SOCIALS, BRAND } from '../config'
+import { useContent } from '../i18n'
 import SocialIcon from './SocialIcon'
 
 /**
@@ -15,6 +16,8 @@ import SocialIcon from './SocialIcon'
  * fotograma rompería la promesa del hero.
  */
 export default function WhatsApp() {
+  const c = useContent()
+  const w = c.whatsapp
   const [visible, setVisible] = useState(false)
   const [open, setOpen] = useState(false)
   const sentinel = useRef(null)
@@ -70,7 +73,7 @@ export default function WhatsApp() {
         <ul
           className="flex flex-col items-end gap-2.5 overflow-hidden transition-[max-height,margin] duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)]"
           role="menu"
-          aria-label="Redes sociales"
+          aria-label={w.social}
           style={{ maxHeight: open ? '220px' : '0px', marginBottom: open ? '0.75rem' : '0px' }}
         >
           {SOCIALS.map((s, i) => (
@@ -122,7 +125,7 @@ export default function WhatsApp() {
           {/* Toggle: solo en puntero grueso. En fino, el hover ya abre. */}
           <button
             type="button"
-            aria-label={open ? 'Cerrar redes sociales' : 'Ver redes sociales'}
+            aria-label={open ? w.close : w.open}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className="flex h-11 w-11 items-center justify-center rounded-full bg-ivory text-ink shadow-[0_6px_28px_-8px_rgba(18,16,14,0.5)] ring-1 ring-ink/8 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95 [@media(pointer:fine)]:hidden"
@@ -144,12 +147,12 @@ export default function WhatsApp() {
           </button>
 
           <a
-            href={waLink(WA_MSG_DEFAULT)}
+            href={waLink(c.wa.default)}
             target="_blank"
             rel="noreferrer"
             data-cursor="link"
             data-cursor-bg="dark"
-            aria-label="Escribir por WhatsApp a Marbre"
+            aria-label={w.message}
             className="group/wa flex items-center gap-3 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-ivory shadow-[0_8px_40px_-10px_rgba(18,16,14,0.5)] transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.96]"
           >
             <span className="hidden text-[10px] tracking-[0.2em] uppercase sm:block">WhatsApp</span>

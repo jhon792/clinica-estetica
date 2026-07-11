@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/motion'
-import { PHILOSOPHY } from '../config'
+import { useContent } from '../i18n'
 import { SectionMark } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
 
@@ -10,10 +10,13 @@ import { useReveal } from '../hooks/useReveal'
  * la que decide avanzar. Es la única animación de la web atada al scrub.
  */
 export default function Philosophy() {
+  const c = useContent()
   const root = useRef(null)
   const mark = useReveal()
-  const words = PHILOSOPHY.split(' ')
+  const words = c.philosophy.text.split(' ')
 
+  // Depende del texto: al cambiar de idioma cambia el número de palabras, así
+  // que hay que rehacer el scrub para que apunte a los nuevos nodos.
   useEffect(() => {
     if (prefersReducedMotion()) return
     const ctx = gsap.context(() => {
@@ -32,7 +35,7 @@ export default function Philosophy() {
       })
     }, root)
     return () => ctx.revert()
-  }, [])
+  }, [c.philosophy.text])
 
   return (
     <section
@@ -42,7 +45,7 @@ export default function Philosophy() {
     >
       <div className="mx-auto w-full max-w-[1180px] px-6 md:px-10">
         <div ref={mark} className="mb-16 md:mb-24">
-          <SectionMark index="I" label="Filosofía" />
+          <SectionMark index="I" label={c.philosophy.label} />
         </div>
 
         <p className="max-w-[26ch] font-display text-[clamp(1.6rem,4.1vw,3.35rem)] font-light leading-[1.28] tracking-[-0.015em] md:max-w-[30ch]">
@@ -58,10 +61,9 @@ export default function Philosophy() {
         </p>
 
         <div className="mt-16 flex flex-col gap-6 border-t border-ink/8 pt-8 md:mt-24 md:flex-row md:items-baseline md:justify-between">
-          <p className="eyebrow">Marbre · Instituto de Cirugía Plástica</p>
+          <p className="eyebrow">{c.philosophy.footLeft}</p>
           <p className="max-w-[42ch] text-[13px] leading-relaxed text-stone">
-            Miembro de la Sociedad Colombiana de Cirugía Plástica, Estética y
-            Reconstructiva. Registro habilitado ante la Secretaría de Salud.
+            {c.philosophy.footRight}
           </p>
         </div>
       </div>

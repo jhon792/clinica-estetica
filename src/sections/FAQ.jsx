@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { SectionMark, Lines } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
-import { FAQS } from '../config'
+import { useContent } from '../i18n'
 
 /**
  * No es un acordeón. En escritorio, las preguntas son un índice y la respuesta
@@ -11,6 +11,8 @@ import { FAQS } from '../config'
  * (Y así no repetimos la animación de despliegue que ya usa Especialidades.)
  */
 export default function FAQ() {
+  const t = useContent().faq
+  const FAQS = t.items
   const root = useReveal({ threshold: 0.08 })
   const [i, setI] = useState(0)
 
@@ -18,9 +20,9 @@ export default function FAQ() {
     <section id="preguntas" ref={root} className="relative bg-paper py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="mb-14 md:mb-20">
-          <SectionMark index="XI" label="Preguntas" />
+          <SectionMark index="XI" label={t.label} />
           <h2 className="mt-10 max-w-[16ch] font-display text-[clamp(2rem,4.4vw,3.5rem)] font-light leading-[1.04] tracking-[-0.02em]">
-            <Lines lines={['Lo que otras', 'clínicas evitan', 'responder.']} step={110} />
+            <Lines lines={t.titleLines} step={110} />
           </h2>
         </div>
 
@@ -87,14 +89,14 @@ export default function FAQ() {
               </div>
 
               <div className="mt-12 border-t border-ink/10 pt-8">
-                <p className="eyebrow mb-4">¿No encuentra su pregunta?</p>
+                <p className="eyebrow mb-4">{t.noQuestion}</p>
                 <a
                   href="#reserva"
                   onClick={(e) => { e.preventDefault(); document.getElementById('reserva')?.scrollIntoView() }}
                   data-cursor="link"
                   className="group relative inline-block text-[10px] tracking-[0.22em] uppercase text-ink"
                 >
-                  Escríbanos directamente
+                  {t.writeUs}
                   <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left bg-ink/30 transition-transform duration-[700ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:origin-right group-hover:scale-x-0" />
                 </a>
               </div>

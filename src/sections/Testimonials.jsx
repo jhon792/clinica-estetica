@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { SectionMark } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
-import { TESTIMONIALS } from '../config'
+import { useContent } from '../i18n'
 
 /**
  * Un testimonio a la vez, a tamaño de titular. Un carrusel de tarjetas con
@@ -9,6 +9,8 @@ import { TESTIMONIALS } from '../config'
  * todo el encargo.
  */
 export default function Testimonials() {
+  const tr = useContent().testimonials
+  const TESTIMONIALS = tr.items
   const root = useReveal({ threshold: 0.2 })
   const [i, setI] = useState(0)
   const [dir, setDir] = useState(1)
@@ -21,7 +23,7 @@ export default function Testimonials() {
   return (
     <section id="testimonios" ref={root} className="relative bg-ivory py-28 md:py-40">
       <div className="mx-auto max-w-[1180px] px-6 md:px-10">
-        <SectionMark index="IX" label="Testimonios" />
+        <SectionMark index="IX" label={tr.label} />
 
         <div className="relative mt-16 min-h-[42vh] md:mt-24 md:min-h-[38vh]">
           {TESTIMONIALS.map((t, idx) => (
@@ -59,15 +61,13 @@ export default function Testimonials() {
           </p>
 
           <div className="flex gap-2">
-            <Ctrl onClick={() => go(-1)} label="Testimonio anterior"><path d="M9 2L4 6l5 4" /></Ctrl>
-            <Ctrl onClick={() => go(1)} label="Testimonio siguiente"><path d="M4 2l5 4-5 4" /></Ctrl>
+            <Ctrl onClick={() => go(-1)} label={tr.prev}><path d="M9 2L4 6l5 4" /></Ctrl>
+            <Ctrl onClick={() => go(1)} label={tr.next}><path d="M4 2l5 4-5 4" /></Ctrl>
           </div>
         </div>
 
         <p className="mt-8 max-w-[62ch] text-[11.5px] leading-relaxed text-stone">
-          Testimonios reproducidos con autorización expresa. Identidades
-          abreviadas a petición de las pacientes. Ningún testimonio ha sido
-          compensado económicamente.
+          {tr.disclaimer}
         </p>
       </div>
     </section>

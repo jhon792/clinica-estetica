@@ -1,50 +1,32 @@
 import { useEffect, useRef, useState } from 'react'
 import { useReveal } from '../hooks/useReveal'
 import { scrollTo } from '../lib/motion'
+import { useContent } from '../i18n'
 import SocialIcon, { GoogleMapsIcon } from '../components/SocialIcon'
 import {
-  CLINIC_LEGAL, SURGEON, EMAIL, PHONE, ADDRESS, CITY,
-  GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED, SOCIALS, BRAND, waLink, WA_MSG_DEFAULT,
+  EMAIL, PHONE, ADDRESS, CITY,
+  GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED, SOCIALS, BRAND, waLink,
 } from '../config'
 
-const COLS = [
-  {
-    title: 'Instituto',
-    items: [
-      { label: 'Filosofía', id: 'filosofia' },
-      { label: 'La Cirujana', id: 'cirujana' },
-      { label: 'Instalaciones', id: 'instalaciones' },
-      { label: 'Tecnología', id: 'tecnologia' },
-    ],
-  },
-  {
-    title: 'Procedimientos',
-    items: [
-      { label: 'Resultados', id: 'resultados' },
-      { label: 'Antes y después', id: 'comparador' },
-      { label: 'Especialidades', id: 'especialidades' },
-      { label: 'Proceso', id: 'proceso' },
-    ],
-  },
-]
-
 export default function Footer() {
+  const c = useContent()
+  const t = c.footer
+  const COLS = t.cols
   const root = useReveal({ threshold: 0.05 })
-  const year = new Date().getFullYear()
 
   return (
     <footer ref={root} data-cursor-bg="dark" className="on-dark relative overflow-hidden bg-ink pt-24 md:pt-32">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="grid grid-cols-2 gap-y-14 md:grid-cols-12 md:gap-x-10">
           <div className="col-span-2 md:col-span-4">
-            <p className="rise eyebrow mb-6">Reserve su consulta</p>
+            <p className="rise eyebrow mb-6">{t.reserveKicker}</p>
             <button
               onClick={() => scrollTo('#reserva')}
               data-cursor="link"
               className="group block text-left"
             >
               <span className="rise block font-display text-[clamp(1.7rem,2.8vw,2.4rem)] font-light leading-[1.14] text-ivory" style={{ '--d': '80ms' }}>
-                Noventa minutos<br />que cambian<br />la decisión.
+                {t.reserveTitle[0]}<br />{t.reserveTitle[1]}<br />{t.reserveTitle[2]}
               </span>
               <span className="rise mt-8 flex h-12 w-12 items-center justify-center rounded-full ring-1 ring-ivory/20 transition-all duration-[800ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-ivory group-hover:text-ink" style={{ '--d': '200ms' }}>
                 <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -75,12 +57,12 @@ export default function Footer() {
           ))}
 
           <div className="col-span-2 md:col-span-3 md:col-start-10">
-            <p className="rise eyebrow mb-6" style={{ '--d': '300ms' }}>Contacto</p>
+            <p className="rise eyebrow mb-6" style={{ '--d': '300ms' }}>{t.contact}</p>
             <address className="space-y-3.5 not-italic">
               {[
                 { label: PHONE, href: `tel:${PHONE.replace(/\s/g, '')}` },
                 { label: EMAIL, href: `mailto:${EMAIL}` },
-                { label: 'WhatsApp', href: waLink(WA_MSG_DEFAULT), ext: true },
+                { label: 'WhatsApp', href: waLink(c.wa.default), ext: true },
               ].map((l, i) => (
                 <div key={l.label} className="rise" style={{ '--d': `${360 + i * 40}ms` }}>
                   <a
@@ -137,7 +119,7 @@ export default function Footer() {
 
         {/* Mapa de Google a todo color. Diferido: solo se carga cuando entra
             en viewport — un iframe de Maps es pesado. */}
-        <MapPanel />
+        <MapPanel getHere={t.getHere} openMaps={t.openMaps} />
 
         {/* Logotipo a sangre: la última palabra de la página. Va en SVG, no en
             texto, porque a 0,09 de opacidad es una filigrana — y una filigrana
@@ -172,17 +154,17 @@ export default function Footer() {
             Esta franja se aparta para que no le pise la letra pequeña. */}
         <div className="flex flex-col gap-6 border-t border-ivory/10 pb-28 pt-9 md:flex-row md:items-center md:justify-between md:pb-9 md:pr-48">
           <p className="text-[11px] leading-relaxed text-mist/80">
-            © {year} {CLINIC_LEGAL} · {SURGEON} · Reg. SCCP 4412
+            {t.legal}
           </p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            <a href="#" data-cursor="link" className="text-[11px] text-mist/80 transition-colors hover:text-ivory">Política de privacidad</a>
-            <a href="#" data-cursor="link" className="text-[11px] text-mist/80 transition-colors hover:text-ivory">Tratamiento de datos</a>
+            <a href="#" data-cursor="link" className="text-[11px] text-mist/80 transition-colors hover:text-ivory">{t.privacy}</a>
+            <a href="#" data-cursor="link" className="text-[11px] text-mist/80 transition-colors hover:text-ivory">{t.data}</a>
             <button
               onClick={() => scrollTo('#inicio')}
               data-cursor="link"
               className="group flex items-center gap-2.5 text-[11px] text-mist/80 transition-colors hover:text-ivory"
             >
-              Volver arriba
+              {t.top}
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="transition-transform duration-[700ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-translate-y-1" aria-hidden="true">
                 <path d="M5 9V1M1.5 4.5L5 1l3.5 3.5" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -203,7 +185,7 @@ export default function Footer() {
  * una plancha con la dirección, que además es lo que aparece si el usuario
  * bloquea contenido de Google. El mapa se muestra con sus colores originales.
  */
-function MapPanel() {
+function MapPanel({ getHere, openMaps }) {
   const ref = useRef(null)
   const [load, setLoad] = useState(false)
 
@@ -221,7 +203,7 @@ function MapPanel() {
   return (
     <div ref={ref} className="rise mt-20 md:mt-28" style={{ '--d': '120ms' }}>
       <div className="mb-5 flex items-center justify-between">
-        <p className="eyebrow">Cómo llegar</p>
+        <p className="eyebrow">{getHere}</p>
         <a
           href={GOOGLE_MAPS_URL}
           target="_blank"
@@ -230,7 +212,7 @@ function MapPanel() {
           className="group relative flex items-center gap-2.5 text-[10px] tracking-[0.2em] uppercase text-mist transition-colors hover:text-ivory"
         >
           <GoogleMapsIcon size={15} className="transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110" />
-          Abrir en Google Maps
+          {openMaps}
           <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-ivory/50 transition-transform duration-[700ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-x-100" />
         </a>
       </div>
@@ -238,7 +220,7 @@ function MapPanel() {
       <div className="group relative h-[240px] w-full overflow-hidden bg-[#0a0908] ring-1 ring-ivory/10 md:h-[340px]">
         {load ? (
           <iframe
-            title={`Ubicación de ${CLINIC_LEGAL} en el mapa`}
+            title={`Marbre — ${ADDRESS}, ${CITY}`}
             src={GOOGLE_MAPS_EMBED}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

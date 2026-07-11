@@ -1,6 +1,6 @@
 import { SectionMark, Rise } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
-import { TECHNOLOGY } from '../config'
+import { useContent } from '../i18n'
 
 /**
  * Sección oscura. Rompe la respiración clara de la página justo antes de los
@@ -8,32 +8,31 @@ import { TECHNOLOGY } from '../config'
  * limpio de lo que es. Es un truco de montaje, no de diseño.
  */
 export default function Technology() {
+  const t = useContent().technology
   const root = useReveal({ threshold: 0.08 })
 
   return (
     <section id="tecnologia" ref={root} data-cursor-bg="dark" className="on-dark relative overflow-hidden bg-ink py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div>
-          <SectionMark index="VIII" label="Tecnología" />
+          <SectionMark index="VIII" label={t.label} />
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-y-10 md:mt-20 lg:grid-cols-12">
           <h2 className="font-display text-[clamp(1.9rem,4vw,3.2rem)] font-light leading-[1.08] tracking-[-0.02em] text-ivory lg:col-span-5">
-            <Rise as="span" className="block">El instrumento<br />no opera.</Rise>
+            <Rise as="span" className="block">{t.titleLines[0]}<br />{t.titleLines[1]}</Rise>
           </h2>
           <Rise delay={200} className="lg:col-span-5 lg:col-start-8">
             <p className="max-w-[46ch] text-[14.5px] leading-[1.9] font-light text-mist">
-              Ningún equipo sustituye el criterio. Pero un equipo insuficiente
-              limita lo que ese criterio puede ejecutar. Estos son los cinco que
-              usamos, y la razón exacta de cada uno.
+              {t.intro}
             </p>
           </Rise>
         </div>
 
         {/* Tabla editorial: filas con filete, sin cajas ni sombras. */}
         <div className="mt-20 md:mt-28">
-          {TECHNOLOGY.map((t, i) => (
-            <Row key={t.name} {...t} n={i + 1} />
+          {t.items.map((it, i) => (
+            <Row key={it.name} {...it} n={i + 1} />
           ))}
           <div className="h-px w-full bg-ivory/10" />
         </div>
@@ -41,8 +40,8 @@ export default function Technology() {
 
       {/* Marquesina: un solo tramo duplicado. Nunca se detiene, nunca acelera. */}
       <div className="relative mt-24 flex overflow-hidden md:mt-32" aria-hidden="true">
-        <Marquee />
-        <Marquee />
+        <Marquee text={t.marquee} />
+        <Marquee text={t.marquee} />
       </div>
     </section>
   )
@@ -79,8 +78,7 @@ function Row({ name, desc, meta, n }) {
  * `textLength` obliga a cada copia a ocupar justo el ancho del viewBox, así
  * dos copias contiguas empalman sin costura al desplazarse un -100%.
  */
-function Marquee() {
-  const text = 'Quirófano ISO 7 · Anestesiólogo de planta · Un procedimiento por jornada · '
+function Marquee({ text }) {
   return (
     <svg
       viewBox="0 0 2000 90"

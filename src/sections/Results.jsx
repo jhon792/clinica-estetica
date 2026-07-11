@@ -3,11 +3,7 @@ import Img from '../components/Img'
 import { SectionMark, Lines } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
 import { gsap } from '../lib/motion'
-import { CASES } from '../config'
-
-// La galería muestra resultados. El caso de postoperatorio inmediato vive solo
-// en el comparador, donde su pie explica la fase en que fue tomado.
-const SHOWCASE = CASES.filter((c) => c.showcase !== false)
+import { useContent } from '../i18n'
 
 /**
  * Scroll horizontal fijado. `matchMedia` de ScrollTrigger apaga el pin por
@@ -15,6 +11,11 @@ const SHOWCASE = CASES.filter((c) => c.showcase !== false)
  * pulgar es hostil. Allí se convierte en un carrusel con snap nativo.
  */
 export default function Results() {
+  const c = useContent()
+  const t = c.results
+  // La galería muestra resultados. El caso de postoperatorio inmediato vive
+  // solo en el comparador, donde su pie explica la fase en que fue tomado.
+  const showcase = c.cases.filter((x) => x.showcase !== false)
   const root = useRef(null)
   const track = useRef(null)
   const head = useReveal()
@@ -67,15 +68,13 @@ export default function Results() {
     <section id="resultados" ref={root} className="relative overflow-hidden bg-ivory py-24 lg:h-[100dvh] lg:py-0">
       <div className="flex h-full flex-col lg:justify-center">
         <div ref={head} className="mx-auto w-full max-w-[1560px] shrink-0 px-6 md:px-10 lg:pt-24">
-          <SectionMark index="III" label="Resultados" />
+          <SectionMark index="III" label={t.label} />
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <h2 className="font-display text-[clamp(2.1rem,5vw,4rem)] font-light leading-[1.02] tracking-[-0.02em]">
-              <Lines lines={['Cuatro casos.', 'Ningún retoque digital.']} step={110} />
+              <Lines lines={t.titleLines} step={110} />
             </h2>
             <p className="rise max-w-[36ch] text-[13px] leading-relaxed text-stone" style={{ '--d': '300ms' }}>
-              Fotografía clínica sin edición, publicada con consentimiento
-              escrito. Cada resultado es individual y no constituye una promesa
-              de resultado equivalente.
+              {t.desc}
             </p>
           </div>
         </div>
@@ -87,18 +86,18 @@ export default function Results() {
             className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-8 md:px-10 lg:snap-none lg:overflow-visible lg:px-10 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             style={{ willChange: 'transform' }}
           >
-            {SHOWCASE.map((c, i) => (
+            {showcase.map((item, i) => (
               <article
-                key={c.id}
+                key={item.id}
                 data-card
                 data-cursor="view"
-                data-cursor-label="Caso"
+                data-cursor-label={t.caseCursor}
                 className="group w-[76vw] shrink-0 snap-center sm:w-[54vw] md:w-[40vw] lg:w-[26vw] lg:will-change-transform"
               >
                 <div className="relative overflow-hidden bg-sand" style={{ aspectRatio: '4 / 5' }}>
                   <Img
-                    src={c.after}
-                    alt={`${c.title} — resultado postoperatorio. ${c.note}`}
+                    src={item.after}
+                    alt={`${item.title}. ${item.note}`}
                     sizes="(max-width: 640px) 76vw, (max-width: 1024px) 40vw, 26vw"
                     className="h-full w-full scale-[1.04] object-cover object-center transition-transform duration-[1400ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-100"
                   />
@@ -108,9 +107,9 @@ export default function Results() {
                   </span>
                 </div>
                 <div className="mt-5">
-                  <h3 className="font-display text-[19px] font-light leading-tight text-ink">{c.title}</h3>
-                  <p className="eyebrow mt-2.5">{c.meta}</p>
-                  <p className="mt-4 max-w-[34ch] text-[12.5px] leading-relaxed text-stone">{c.note}</p>
+                  <h3 className="font-display text-[19px] font-light leading-tight text-ink">{item.title}</h3>
+                  <p className="eyebrow mt-2.5">{item.meta}</p>
+                  <p className="mt-4 max-w-[34ch] text-[12.5px] leading-relaxed text-stone">{item.note}</p>
                 </div>
               </article>
             ))}
@@ -123,9 +122,11 @@ export default function Results() {
                 className="group block"
                 onClick={(e) => { e.preventDefault(); document.getElementById('comparador')?.scrollIntoView() }}
               >
-                <p className="eyebrow mb-5">Continúa</p>
+                <p className="eyebrow mb-5">{t.continue}</p>
                 <p className="font-display text-[clamp(1.7rem,2.4vw,2.4rem)] font-light leading-[1.1] text-ink">
-                  Compare usted<br />mismo, milímetro<br />a milímetro.
+                  {t.continueTitle.map((line, i) => (
+                    <span key={i}>{line}{i < t.continueTitle.length - 1 && <br />}</span>
+                  ))}
                 </p>
                 <span className="mt-7 flex h-12 w-12 items-center justify-center rounded-full ring-1 ring-ink/15 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-ink group-hover:text-ivory">
                   <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">

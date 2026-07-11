@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import './index.css'
 
+import { useContent } from './i18n'
 import { initSmoothScroll, ScrollTrigger } from './lib/motion'
 import Cursor from './components/Cursor'
 import Nav from './sections/Nav'
@@ -21,6 +22,8 @@ import Footer from './sections/Footer'
 import WhatsApp from './components/WhatsApp'
 
 export default function App() {
+  const c = useContent()
+
   useEffect(() => {
     const destroy = initSmoothScroll()
 
@@ -44,7 +47,7 @@ export default function App() {
         href="#contenido"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-ink focus:px-6 focus:py-3 focus:text-[11px] focus:tracking-[0.2em] focus:uppercase focus:text-ivory"
       >
-        Saltar al contenido
+        {c.nav.skip}
       </a>
 
       <Cursor />

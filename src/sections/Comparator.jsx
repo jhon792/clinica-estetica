@@ -4,7 +4,7 @@ import { DIMS } from '../lib/images'
 import { SectionMark } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
 import { gsap } from '../lib/motion'
-import { CASES } from '../config'
+import { useContent } from '../i18n'
 
 /**
  * Comparador antes/después.
@@ -25,6 +25,9 @@ import { CASES } from '../config'
  *    comparador que solo obedece al ratón no es accesible.
  */
 export default function Comparator() {
+  const content = useContent()
+  const tr = content.comparator
+  const CASES = content.cases
   const root = useRef(null)
   const stage = useRef(null)
   const frame = useRef(null)
@@ -126,13 +129,14 @@ export default function Comparator() {
   // En móvil no se fija la sección: cambiar de caso es tocar la lista y el
   // divisor se arrastra con el dedo. Fijar una sección alta y ciclar casos con
   // el scroll táctil resultaba confuso y chocaba con el gesto de arrastre.
+  const caseCount = CASES.length
   useEffect(() => {
     const mm = gsap.matchMedia()
     mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
-      ScrollDrivenIndex(root.current, CASES.length, setIndex)
+      ScrollDrivenIndex(root.current, caseCount, setIndex)
     })
     return () => mm.revert()
-  }, [])
+  }, [caseCount])
 
   // ── Teclado ──────────────────────────────────────────────
   const onKey = (e) => {
@@ -150,15 +154,15 @@ export default function Comparator() {
       <div className="flex min-h-full flex-col justify-center py-8 lg:py-24">
         <div ref={head} className="mx-auto w-full max-w-[1560px] px-6 md:px-10">
           <div>
-            <SectionMark index="IV" label="Antes y Después" />
+            <SectionMark index="IV" label={tr.label} />
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-y-12 lg:grid-cols-12 lg:gap-x-16">
             {/* Índice de casos: el scroll lo recorre, el clic lo salta. */}
             <div className="lg:col-span-3">
               <h2 className="rise font-display text-[clamp(1.9rem,3.4vw,2.9rem)] font-light leading-[1.06] tracking-[-0.02em] text-ivory">
-                Arrastre.<br />
-                <span className="text-mist">Compruebe.</span>
+                {tr.titleTop}<br />
+                <span className="text-mist">{tr.titleBottom}</span>
               </h2>
 
               <ul className="mt-10 space-y-1">
@@ -202,14 +206,14 @@ export default function Comparator() {
                 ref={stage}
                 role="slider"
                 tabIndex={0}
-                aria-label={`Comparador antes y después: ${c.title}`}
+                aria-label={tr.ariaSlider(c.title)}
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuenow={pos}
-                aria-valuetext={`${pos}% del resultado postoperatorio visible`}
+                aria-valuetext={tr.ariaValue(pos)}
                 onKeyDown={onKey}
                 data-cursor="view"
-                data-cursor-label="Arrastrar"
+                data-cursor-label={tr.drag}
                 // `touch-pan-y`: el arrastre horizontal mueve el divisor, pero
                 // el gesto vertical sigue desplazando la página (en móvil, un
                 // `touch-none` atrapaba el dedo y no dejaba salir de la sección).
@@ -241,7 +245,7 @@ export default function Comparator() {
                       {/* Antes: capa base, íntegra. */}
                       <Img
                         src={item.before}
-                        alt={`${item.title} — antes del procedimiento`}
+                        alt={`${item.title} — ${tr.before}`}
                         sizes="(max-width: 1024px) 100vw, 70vw"
                         className="absolute inset-0 h-full w-full object-cover object-center"
                       />
@@ -252,7 +256,7 @@ export default function Comparator() {
                       >
                         <Img
                           src={item.after}
-                          alt={`${item.title} — resultado postoperatorio`}
+                          alt={`${item.title} — ${tr.after}`}
                           sizes="(max-width: 1024px) 100vw, 70vw"
                           className="absolute inset-0 h-full w-full object-cover object-center"
                         />
@@ -278,13 +282,13 @@ export default function Comparator() {
                   className="pointer-events-none absolute left-5 top-5 z-10 text-[9px] tracking-[0.3em] uppercase text-ivory/70 transition-opacity duration-300"
                   style={{ opacity: pos < 16 ? 0 : 1 }}
                 >
-                  Antes
+                  {tr.before}
                 </span>
                 <span
                   className="pointer-events-none absolute right-5 top-5 z-10 text-[9px] tracking-[0.3em] uppercase text-ivory/70 transition-opacity duration-300"
                   style={{ opacity: pos > 84 ? 0 : 1 }}
                 >
-                  Después
+                  {tr.after}
                 </span>
               </div>
 
@@ -294,10 +298,10 @@ export default function Comparator() {
                   tabulador. Viven en el marco, que es lo que se va a pantalla
                   completa. */}
               <div className="absolute bottom-5 right-5 z-10 flex gap-2">
-                <StageButton onClick={() => setZoom((z) => !z)} active={zoom} label={zoom ? 'Alejar' : 'Acercar'}>
+                <StageButton onClick={() => setZoom((z) => !z)} active={zoom} label={zoom ? tr.zoomOut : tr.zoomIn}>
                   {zoom ? <IconZoomOut /> : <IconZoomIn />}
                 </StageButton>
-                <StageButton onClick={toggleFull} active={full} label={full ? 'Salir de pantalla completa' : 'Pantalla completa'}>
+                <StageButton onClick={toggleFull} active={full} label={full ? tr.exitFull : tr.full}>
                   {full ? <IconCollapse /> : <IconExpand />}
                 </StageButton>
               </div>

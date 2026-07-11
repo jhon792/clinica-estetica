@@ -1,22 +1,44 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { scrollTo } from '../lib/motion'
-import { EMAIL, PHONE, INSTAGRAM, ADDRESS, CITY, waLink, WA_MSG_DEFAULT } from '../config'
+import { useContent, useLang } from '../i18n'
+import { LANGS } from '../content'
+import { EMAIL, PHONE, INSTAGRAM, ADDRESS, CITY, waLink } from '../config'
 
-const LINKS = [
-  { id: 'filosofia', label: 'Filosofía' },
-  { id: 'cirujana', label: 'La Cirujana' },
-  { id: 'resultados', label: 'Resultados' },
-  { id: 'especialidades', label: 'Especialidades' },
-  { id: 'proceso', label: 'Proceso' },
-  { id: 'instalaciones', label: 'Instalaciones' },
-  { id: 'peliculas', label: 'En Movimiento' },
-  { id: 'preguntas', label: 'Preguntas' },
-]
+/** Selector de idioma. `dark` invierte los tonos para el overlay. */
+function LangToggle({ compact = false, dark = false }) {
+  const { lang, setLang } = useLang()
+  const c = useContent()
+  const active = dark ? 'text-ivory' : 'text-ink'
+  // Tonos inactivos que cumplen contraste AA: mist (8.4:1 sobre tinta) y
+  // stone (5.3:1 sobre marfil). El activo destaca igual por ser pleno.
+  const idle = dark ? 'text-mist hover:text-ivory' : 'text-stone hover:text-ink'
+  const sep = dark ? 'text-ivory/25' : 'text-ink/20'
+  return (
+    <div className="flex shrink-0 items-center gap-1.5" role="group" aria-label={c.nav.langLabel}>
+      {LANGS.map((l, i) => (
+        <Fragment key={l.code}>
+          {i > 0 && <span className={`text-[10px] ${sep}`} aria-hidden="true">/</span>}
+          <button
+            onClick={() => setLang(l.code)}
+            data-cursor="link"
+            aria-pressed={lang === l.code}
+            lang={l.code}
+            className={`text-[11px] tracking-[0.14em] uppercase transition-colors duration-500 ${lang === l.code ? active : idle}`}
+          >
+            {compact ? l.short : l.label}
+          </button>
+        </Fragment>
+      ))}
+    </div>
+  )
+}
 
 export default function Nav() {
+  const c = useContent()
   const [condensed, setCondensed] = useState(false)
   const [open, setOpen] = useState(false)
   const sentinel = useRef(null)
+  const LINKS = c.nav.links
 
   // Un centinela invisible en el borde superior sustituye al listener de
   // scroll: el navegador nos avisa, no le preguntamos sesenta veces por segundo.
@@ -50,10 +72,10 @@ export default function Nav() {
 
       <header className="fixed inset-x-0 top-0 z-40 px-4 pt-4 md:pt-6">
         <nav
-          aria-label="Principal"
+          aria-label={c.nav.aria}
           className={`mx-auto flex items-center justify-between transition-all duration-[900ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
             condensed
-              ? 'max-w-[1180px] rounded-full bg-ivory/70 py-2 pl-7 pr-2 ring-1 ring-ink/8 backdrop-blur-2xl shadow-[0_1px_40px_-12px_rgba(18,16,14,0.18)]'
+              ? 'max-w-[1240px] rounded-full bg-ivory/70 py-2 pl-7 pr-2 ring-1 ring-ink/8 backdrop-blur-2xl shadow-[0_1px_40px_-12px_rgba(18,16,14,0.18)]'
               : 'max-w-[1560px] rounded-full bg-transparent py-2 pl-2 pr-2 ring-1 ring-transparent'
           }`}
         >
@@ -62,7 +84,7 @@ export default function Nav() {
             onClick={(e) => { e.preventDefault(); scrollTo('#inicio') }}
             data-cursor="link"
             className="group relative shrink-0 px-2"
-            aria-label="Marbre — inicio"
+            aria-label={c.nav.home}
           >
             <span className="font-display text-[19px] font-normal tracking-[0.22em] text-ink">
               MARBRE
@@ -70,7 +92,7 @@ export default function Nav() {
             <span className="absolute -bottom-0.5 left-2 right-2 h-px origin-left scale-x-0 bg-ink transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-x-100" />
           </a>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden items-center gap-7 lg:flex">
             {LINKS.slice(0, 5).map((l) => (
               <button
                 key={l.id}
@@ -84,14 +106,19 @@ export default function Nav() {
             ))}
           </div>
 
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-3 md:gap-4">
+            {/* Selector de idioma — junto a "Proceso", visible en todos los tamaños. */}
+            <LangToggle compact />
+
+            <span className="hidden h-4 w-px bg-ink/12 md:block" aria-hidden="true" />
+
             <button
               onClick={() => go('reserva')}
               data-cursor="link"
               data-cursor-bg="dark"
               className="group hidden items-center gap-3 rounded-full bg-ink py-2 pl-6 pr-2 text-ivory transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97] md:flex"
             >
-              <span className="text-[10px] tracking-[0.2em] uppercase">Reservar</span>
+              <span className="text-[10px] tracking-[0.2em] uppercase">{c.nav.book}</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ivory/10 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-[3px] group-hover:-translate-y-[1px] group-hover:scale-105 group-hover:bg-ivory/20">
                 <Arrow />
               </span>
@@ -99,7 +126,7 @@ export default function Nav() {
 
             <button
               onClick={() => setOpen(true)}
-              aria-label="Abrir menú"
+              aria-label={c.nav.openMenu}
               aria-expanded={open}
               data-cursor="link"
               className="flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-ink/10 transition-colors duration-500 hover:bg-ink/[0.04]"
@@ -113,12 +140,12 @@ export default function Nav() {
         </nav>
       </header>
 
-      <Overlay open={open} onClose={() => setOpen(false)} go={go} />
+      <Overlay open={open} onClose={() => setOpen(false)} go={go} c={c} LINKS={LINKS} />
     </>
   )
 }
 
-function Overlay({ open, onClose, go }) {
+function Overlay({ open, onClose, go, c, LINKS }) {
   return (
     <div
       data-cursor-bg="dark"
@@ -131,9 +158,8 @@ function Overlay({ open, onClose, go }) {
         style={{ transform: open ? 'scaleY(1)' : 'scaleY(0)' }}
       />
 
-      {/* Escalar la cortina a cero no oculta a sus hijos: el botón de cerrar
-          seguía pintado sobre la página, invisible sobre marfil y evidente
-          sobre las secciones oscuras. La visibilidad se apaga aparte. */}
+      {/* Escalar la cortina a cero no oculta a sus hijos: la visibilidad se
+          apaga aparte para que el botón de cerrar no quede pintado encima. */}
       <div
         className="relative flex h-full flex-col px-6 py-4 transition-[opacity,visibility] duration-500 md:px-10 md:py-6"
         style={{
@@ -150,28 +176,30 @@ function Overlay({ open, onClose, go }) {
             MARBRE
           </span>
 
-          {/* Las dos aspas nacen de las dos líneas de la hamburguesa. */}
-          <button
-            onClick={onClose}
-            aria-label="Cerrar menú"
-            data-cursor="link"
-            className="flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-ivory/20 transition-colors duration-500 hover:bg-ivory/5"
-          >
-            <span className="relative block h-[18px] w-[18px]">
-              <span
-                className="absolute left-0 top-1/2 h-px w-full bg-ivory transition-transform duration-[800ms] ease-[cubic-bezier(0.32,0.72,0,1)]"
-                style={{ transform: open ? 'rotate(45deg)' : 'translateY(-4px)', transitionDelay: open ? '450ms' : '0ms' }}
-              />
-              <span
-                className="absolute left-0 top-1/2 h-px w-full bg-ivory transition-transform duration-[800ms] ease-[cubic-bezier(0.32,0.72,0,1)]"
-                style={{ transform: open ? 'rotate(-45deg)' : 'translateY(4px)', transitionDelay: open ? '450ms' : '0ms' }}
-              />
-            </span>
-          </button>
+          <div className="flex items-center gap-5">
+            <LangToggle dark />
+            <button
+              onClick={onClose}
+              aria-label={c.nav.closeMenu}
+              data-cursor="link"
+              className="flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-ivory/20 transition-colors duration-500 hover:bg-ivory/5"
+            >
+              <span className="relative block h-[18px] w-[18px]">
+                <span
+                  className="absolute left-0 top-1/2 h-px w-full bg-ivory transition-transform duration-[800ms] ease-[cubic-bezier(0.32,0.72,0,1)]"
+                  style={{ transform: open ? 'rotate(45deg)' : 'translateY(-4px)', transitionDelay: open ? '450ms' : '0ms' }}
+                />
+                <span
+                  className="absolute left-0 top-1/2 h-px w-full bg-ivory transition-transform duration-[800ms] ease-[cubic-bezier(0.32,0.72,0,1)]"
+                  style={{ transform: open ? 'rotate(-45deg)' : 'translateY(4px)', transitionDelay: open ? '450ms' : '0ms' }}
+                />
+              </span>
+            </button>
+          </div>
         </div>
 
         <div className="mt-auto grid flex-1 grid-cols-1 items-end gap-12 pb-6 lg:grid-cols-[1fr_auto]">
-          <nav aria-label="Menú principal">
+          <nav aria-label={c.nav.menu}>
             <ul>
               {LINKS.map((l, i) => (
                 <li key={l.id} className="overflow-hidden">
@@ -209,17 +237,17 @@ function Overlay({ open, onClose, go }) {
             }}
           >
             <div>
-              <p className="eyebrow mb-3">Consulta</p>
+              <p className="eyebrow mb-3">{c.nav.contact}</p>
               <a href={`tel:${PHONE.replace(/\s/g, '')}`} data-cursor="link" className="block text-[14px] text-ivory/75 transition-colors hover:text-ivory">{PHONE}</a>
               <a href={`mailto:${EMAIL}`} data-cursor="link" className="block text-[14px] text-ivory/75 transition-colors hover:text-ivory">{EMAIL}</a>
             </div>
             <div>
-              <p className="eyebrow mb-3">Consultorio</p>
+              <p className="eyebrow mb-3">{c.nav.practice}</p>
               <p className="text-[14px] leading-relaxed text-ivory/75">{ADDRESS}<br />{CITY}, Colombia</p>
             </div>
             <div>
-              <p className="eyebrow mb-3">Directo</p>
-              <a href={waLink(WA_MSG_DEFAULT)} target="_blank" rel="noreferrer" data-cursor="link" className="block text-[14px] text-ivory/75 transition-colors hover:text-ivory">WhatsApp</a>
+              <p className="eyebrow mb-3">{c.nav.direct}</p>
+              <a href={waLink(c.wa.default)} target="_blank" rel="noreferrer" data-cursor="link" className="block text-[14px] text-ivory/75 transition-colors hover:text-ivory">WhatsApp</a>
               <a href={INSTAGRAM} target="_blank" rel="noreferrer" data-cursor="link" className="block text-[14px] text-ivory/75 transition-colors hover:text-ivory">Instagram</a>
             </div>
           </div>

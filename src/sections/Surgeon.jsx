@@ -3,9 +3,12 @@ import Img from '../components/Img'
 import { Lines, Rise, SectionMark } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
 import { gsap, prefersReducedMotion } from '../lib/motion'
-import { SURGEON, FIGURES } from '../config'
+import { useContent } from '../i18n'
+import { SURGEON } from '../config'
 
 export default function Surgeon() {
+  const c = useContent()
+  const t = c.surgeon
   const root = useReveal({ threshold: 0.12 })
   const wrap = useRef(null)
   const img = useRef(null)
@@ -30,7 +33,7 @@ export default function Surgeon() {
     <section id="cirujana" ref={wrap} className="relative bg-paper py-28 md:py-40">
       <div ref={root} className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="mb-16 md:mb-24">
-          <SectionMark index="II" label="La Cirujana" />
+          <SectionMark index="II" label={t.label} />
         </div>
 
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-12">
@@ -47,33 +50,26 @@ export default function Surgeon() {
               </div>
             </div>
             <figcaption className="rise mt-5 flex items-baseline justify-between" style={{ '--d': '200ms' }}>
-              <p className="eyebrow">Bogotá, 2025</p>
-              <p className="num text-[10px] tracking-[0.2em] text-stone">Retrato</p>
+              <p className="eyebrow">{t.place}</p>
+              <p className="num text-[10px] tracking-[0.2em] text-stone">{t.portrait}</p>
             </figcaption>
           </figure>
 
           {/* Texto: arranca más abajo, generando la escalera vertical. */}
           <div className="lg:col-span-6 lg:col-start-7 lg:pt-24">
             <h2 className="font-display text-[clamp(2.1rem,5.2vw,4.1rem)] font-light leading-[1.02] tracking-[-0.02em] text-ink">
-              <Lines lines={['Dra. Valentina', 'Restrepo']} step={110} />
+              <Lines lines={t.nameLines} step={110} />
             </h2>
 
             <Rise delay={340} className="mt-8 md:mt-10">
               <p className="max-w-[52ch] text-[15px] leading-[1.9] font-light text-slate-ink">
-                Formada en la Universidad Nacional de Colombia y especializada en
-                rinoplastia estructural en el Hospital Universitario La Paz de
-                Madrid. Ha operado en cuatro continentes y ha rechazado
-                aproximadamente a uno de cada cinco pacientes que la han buscado.
+                {t.bio1}
               </p>
             </Rise>
 
             <Rise delay={460} className="mt-6">
               <p className="max-w-[52ch] text-[15px] leading-[1.9] font-light text-slate-ink">
-                Opera un único procedimiento por jornada quirúrgica. No delega,
-                no supervisa desde fuera, no comparte quirófano. Cree que la
-                cirugía plástica es la única especialidad médica donde el
-                paciente llega sano, y que esa asimetría obliga a una prudencia
-                que la industria ha ido olvidando.
+                {t.bio2}
               </p>
             </Rise>
 
@@ -83,7 +79,7 @@ export default function Surgeon() {
             </Rise>
 
             <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-ink/8 pt-10 sm:grid-cols-4">
-              {FIGURES.map((f, i) => (
+              {t.figures.map((f, i) => (
                 <Figure key={f.label} {...f} delay={700 + i * 90} />
               ))}
             </div>

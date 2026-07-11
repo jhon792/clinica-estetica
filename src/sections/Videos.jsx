@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Img from '../components/Img'
 import { SectionMark, Lines, Rise } from '../components/Type'
 import { useReveal } from '../hooks/useReveal'
-import { VIDEOS } from '../config'
+import { useContent } from '../i18n'
 
 /**
  * Sección de vídeo con patrón "fachada" (lite-youtube):
@@ -16,6 +16,7 @@ import { VIDEOS } from '../config'
  * No es un iframe incrustado: es una portada editorial que reproduce bajo demanda.
  */
 export default function Videos() {
+  const t = useContent().videos
   const root = useReveal({ threshold: 0.08 })
 
   return (
@@ -23,23 +24,21 @@ export default function Videos() {
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
         <div className="mb-14 grid grid-cols-1 items-end gap-8 md:mb-20 md:grid-cols-12">
           <div className="md:col-span-7">
-            <SectionMark index="X" label="En Movimiento" />
+            <SectionMark index="X" label={t.label} />
             <h2 className="mt-10 font-display text-[clamp(2rem,4.6vw,3.6rem)] font-light leading-[1.04] tracking-[-0.02em]">
-              <Lines lines={['Antes de decidir,', 'infórmese.']} step={110} />
+              <Lines lines={t.titleLines} step={110} />
             </h2>
           </div>
           <Rise delay={300} className="md:col-span-4 md:col-start-9">
             <p className="max-w-[42ch] text-[14px] leading-[1.9] font-light text-slate-ink">
-              Dos conversaciones breves sobre lo que conviene saber antes de una
-              cirugía plástica. La decisión mejor tomada es siempre la mejor
-              informada.
+              {t.desc}
             </p>
           </Rise>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2">
-          {VIDEOS.map((v, i) => (
-            <VideoCard key={v.id} video={v} index={i} />
+          {t.items.map((v, i) => (
+            <VideoCard key={v.id} video={v} index={i} playLabel={t.play} />
           ))}
         </div>
       </div>
@@ -47,7 +46,7 @@ export default function Videos() {
   )
 }
 
-function VideoCard({ video, index }) {
+function VideoCard({ video, index, playLabel }) {
   const ref = useReveal({ threshold: 0.15 })
   const [playing, setPlaying] = useState(false)
 
@@ -67,8 +66,8 @@ function VideoCard({ video, index }) {
             type="button"
             onClick={() => setPlaying(true)}
             data-cursor="view"
-            data-cursor-label="Reproducir"
-            aria-label={`Reproducir: ${video.title}`}
+            data-cursor-label={playLabel}
+            aria-label={`${playLabel}: ${video.title}`}
             className="absolute inset-0 h-full w-full"
           >
             {/* Miniaturas a todo color desde la carga. El velo inferior las
