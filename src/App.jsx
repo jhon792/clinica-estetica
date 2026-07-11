@@ -61,10 +61,11 @@ export default function App() {
         <Process />
         <Facilities />
         <Technology />
-        <Testimonials />
         <Videos />
         <FAQ />
         <Booking />
+        {/* Los testimonios cierran la página, justo debajo del formulario. */}
+        <Testimonials />
       </main>
 
       <Footer />

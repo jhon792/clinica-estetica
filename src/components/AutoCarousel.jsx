@@ -21,6 +21,8 @@ export default function AutoCarousel({
   interval = 4200,
   ariaLabel,
   dark = false,
+  prevLabel = 'Anterior',
+  nextLabel = 'Siguiente',
 }) {
   // El reinicio al cambiar de categoría se hace remontando el componente
   // (`key` desde el padre), no con estado: así no hace falta un efecto que
@@ -121,15 +123,15 @@ export default function AutoCarousel({
 
       {N > 1 && (
         <>
-          <Arrow side="left" onClick={() => go(-1)} dark={dark} />
-          <Arrow side="right" onClick={() => go(1)} dark={dark} />
+          <Arrow side="left" onClick={() => go(-1)} dark={dark} label={prevLabel} />
+          <Arrow side="right" onClick={() => go(1)} dark={dark} label={nextLabel} />
         </>
       )}
     </div>
   )
 }
 
-function Arrow({ side, onClick, dark }) {
+function Arrow({ side, onClick, dark, label }) {
   const base = dark
     ? 'bg-ink/50 text-ivory ring-ivory/25 hover:bg-ink/80'
     : 'bg-ivory/70 text-ink ring-ink/12 hover:bg-ivory'
@@ -138,7 +140,7 @@ function Arrow({ side, onClick, dark }) {
       type="button"
       onClick={onClick}
       data-cursor="link"
-      aria-label={side === 'left' ? 'Anterior' : 'Siguiente'}
+      aria-label={label}
       className={`absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full ring-1 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-90 ${base} ${
         side === 'left' ? 'left-2 md:left-3' : 'right-2 md:right-3'
       }`}

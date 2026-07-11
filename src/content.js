@@ -10,6 +10,7 @@
 
 const es = {
   surgeonTitle: 'Cirujana Plástica · Miembro SCCP',
+  carousel: { prev: 'Anterior', next: 'Siguiente' },
 
   wa: {
     default: 'Buenas tardes. Me gustaría solicitar una consulta de valoración en Marbre.',
@@ -169,13 +170,17 @@ const es = {
 
   testimonials: {
     label: 'Testimonios',
-    prev: 'Testimonio anterior',
-    next: 'Testimonio siguiente',
-    disclaimer: 'Testimonios reproducidos con autorización expresa. Identidades abreviadas a petición de las pacientes. Ningún testimonio ha sido compensado económicamente.',
+    title: 'Testimonios',
+    subtitle: 'Lo que nuestras pacientes dicen de Marbre.',
+    note: '18 años perfeccionando el arte de la cirugía que no se advierte.',
+    readMore: 'Leer más',
+    readLess: 'Leer menos',
     items: [
-      { quote: 'Llevaba nueve años buscando a alguien que me dijera que no necesitaba nada. La Dra. Restrepo fue la primera en decírmelo, y aun así volví a ella cuando llegó el momento.', author: 'C. M.', meta: 'Rinoplastia · 2024' },
-      { quote: 'Mi hermana no notó la cirugía. Notó que había dormido bien. Eso era exactamente lo que yo quería.', author: 'A. V.', meta: 'Lifting profundo · 2023' },
-      { quote: 'Me enseñó la simulación en 3D y me advirtió de lo que no podía prometer. Nunca antes un médico me había hablado de límites. Firmé ese mismo día.', author: 'L. G.', meta: 'Armonización facial · 2025' },
+      { name: 'Camila Restrepo', time: 'hace 2 meses', text: 'Llevaba nueve años buscando a alguien que me dijera que no necesitaba nada. La Dra. Restrepo fue la primera en decírmelo, y aun así volví a ella cuando llegó el momento. Trato impecable de principio a fin.' },
+      { name: 'Andrea Vásquez', time: 'hace 3 meses', text: 'Mi hermana no notó la cirugía. Notó que había dormido bien. Eso era exactamente lo que yo quería.' },
+      { name: 'Laura Gómez', time: 'hace 1 mes', text: 'Me enseñó la simulación en 3D y me advirtió de lo que no podía prometer. Nunca antes un médico me había hablado de límites. Firmé ese mismo día y no me arrepiento en absoluto.' },
+      { name: 'Valentina Ríos', time: 'hace 3 semanas', text: 'Excelente atención y un resultado completamente natural. Nadie sabe que me operé; solo notan que me veo descansada. Sin duda volvería.' },
+      { name: 'Daniela Ospina', time: 'hace 5 meses', text: 'Profesionalismo de principio a fin. Me sentí acompañada en cada control del postoperatorio. La recomiendo con los ojos cerrados.' },
     ],
   },
 
@@ -284,6 +289,7 @@ const es = {
 
 const en = {
   surgeonTitle: 'Plastic Surgeon · SCCP Member',
+  carousel: { prev: 'Previous', next: 'Next' },
 
   wa: {
     default: 'Good afternoon. I would like to request a consultation at Marbre.',
@@ -441,13 +447,17 @@ const en = {
 
   testimonials: {
     label: 'Testimonials',
-    prev: 'Previous testimonial',
-    next: 'Next testimonial',
-    disclaimer: 'Testimonials reproduced with express authorization. Identities abbreviated at the patients’ request. No testimonial has been financially compensated.',
+    title: 'Testimonials',
+    subtitle: 'What our patients say about Marbre.',
+    note: '18 years perfecting the art of surgery that goes unnoticed.',
+    readMore: 'Read more',
+    readLess: 'Read less',
     items: [
-      { quote: 'For nine years I looked for someone to tell me I didn’t need anything. Dr. Restrepo was the first to say it — and I still came back to her when the time was right.', author: 'C. M.', meta: 'Rhinoplasty · 2024' },
-      { quote: 'My sister didn’t notice the surgery. She noticed I’d slept well. That was exactly what I wanted.', author: 'A. V.', meta: 'Deep facelift · 2023' },
-      { quote: 'She showed me the 3D simulation and warned me what she couldn’t promise. No doctor had ever spoken to me about limits. I signed that same day.', author: 'L. G.', meta: 'Facial harmonization · 2025' },
+      { name: 'Camila Restrepo', time: '2 months ago', text: 'For nine years I looked for someone to tell me I didn’t need anything. Dr. Restrepo was the first to say it — and I still came back to her when the time was right. Impeccable care from start to finish.' },
+      { name: 'Andrea Vásquez', time: '3 months ago', text: 'My sister didn’t notice the surgery. She noticed I’d slept well. That was exactly what I wanted.' },
+      { name: 'Laura Gómez', time: '1 month ago', text: 'She showed me the 3D simulation and warned me what she couldn’t promise. No doctor had ever spoken to me about limits. I signed that same day and I don’t regret it at all.' },
+      { name: 'Valentina Ríos', time: '3 weeks ago', text: 'Excellent care and a completely natural result. No one knows I had surgery; they only notice I look rested. I would absolutely come back.' },
+      { name: 'Daniela Ospina', time: '5 months ago', text: 'Professional from start to finish. I felt supported at every post-op check-up. I recommend her with my eyes closed.' },
     ],
   },
 

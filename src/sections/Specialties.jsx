@@ -61,6 +61,8 @@ export default function Specialties() {
             key={cat}
             items={items}
             ariaLabel={t.title}
+            prevLabel={content.carousel.prev}
+            nextLabel={content.carousel.next}
             gapClassName="gap-4 md:gap-6"
             cardClassName="w-[78%] shrink-0 sm:w-[46%] lg:w-[31.5%]"
             renderItem={(sp) => (
