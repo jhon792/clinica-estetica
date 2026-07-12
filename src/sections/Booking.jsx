@@ -90,7 +90,7 @@ export default function Booking() {
   return (
     <section id="reserva" ref={root} className="relative bg-ivory py-28 md:py-40">
       <div className="mx-auto max-w-[1560px] px-6 md:px-10">
-        <SectionMark index="IX" label={t.label} />
+        <SectionMark index="VII" label={t.label} />
 
         <div className="mt-14 grid grid-cols-1 gap-y-16 md:mt-20 lg:grid-cols-12 lg:gap-x-20">
           {/* Contexto */}

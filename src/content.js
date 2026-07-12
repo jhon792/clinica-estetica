@@ -31,7 +31,6 @@ const es = {
       { id: 'resultados', label: 'Resultados' },
       { id: 'especialidades', label: 'Procedimientos' },
       { id: 'proceso', label: 'Proceso' },
-      { id: 'instalaciones', label: 'Instalaciones' },
       { id: 'peliculas', label: 'En Movimiento' },
       { id: 'preguntas', label: 'Preguntas' },
     ],
@@ -134,39 +133,7 @@ const es = {
     ],
   },
 
-  facilities: {
-    label: 'Instalaciones',
-    titleLines: ['Novecientos metros', 'sobre Bogotá.'],
-    desc: 'Mármol de Carrara, roble macizo y acero cepillado. Quirófano propio certificado ISO 7. Una sola paciente en el edificio durante toda la jornada quirúrgica.',
-    enlarge: 'Ampliar',
-    galleryAria: 'Galería de instalaciones',
-    close: 'Cerrar',
-    closeGallery: 'Cerrar galería',
-    prev: 'Anterior',
-    next: 'Siguiente',
-    plates: [
-      { src: 'consulta', alt: 'Valoración clínica en sala privada con luz natural, Marbre Bogotá' },
-      { src: 'protocolo-piel', alt: 'Protocolo de preparación cutánea preoperatoria' },
-      { src: 'endolaser', alt: 'Cabina de procedimientos no quirúrgicos' },
-      { src: 'toxina', alt: 'Control de seguimiento tras la aplicación de toxina botulínica' },
-      { src: 'armonizacion', alt: 'Análisis de proporciones faciales previo a la armonización' },
-      { src: 'regenerativa', alt: 'Preparación de bioestimuladores de colágeno' },
-    ],
-  },
 
-  technology: {
-    label: 'Tecnología',
-    titleLines: ['El instrumento', 'no opera.'],
-    intro: 'Ningún equipo sustituye el criterio. Pero un equipo insuficiente limita lo que ese criterio puede ejecutar. Estos son los cinco que usamos, y la razón exacta de cada uno.',
-    marquee: 'Quirófano ISO 7 · Anestesiólogo de planta · Un procedimiento por jornada · ',
-    items: [
-      { name: 'Piezotome®', desc: 'Rinoplastia ultrasónica de precisión ósea', meta: 'Acteon' },
-      { name: 'Vectra® H2', desc: 'Simulación tridimensional preoperatoria', meta: 'Canfield' },
-      { name: 'Renuvion®', desc: 'Retracción cutánea por plasma helio', meta: 'Apyx' },
-      { name: 'VASER® Lipo', desc: 'Emulsión selectiva por ultrasonido', meta: 'Solta' },
-      { name: 'Quirófano ISO 7', desc: 'Flujo laminar y presión positiva', meta: 'Certificado' },
-    ],
-  },
 
   testimonials: {
     label: 'Testimonios',
@@ -260,8 +227,8 @@ const es = {
     cols: [
       { title: 'Instituto', items: [
         { label: 'La Cirujana', id: 'cirujana' },
-        { label: 'Instalaciones', id: 'instalaciones' },
-        { label: 'Tecnología', id: 'tecnologia' },
+        { label: 'En Movimiento', id: 'peliculas' },
+        { label: 'Testimonios', id: 'testimonios' },
         { label: 'Preguntas', id: 'preguntas' },
       ] },
       { title: 'Procedimientos', items: [
@@ -310,7 +277,6 @@ const en = {
       { id: 'resultados', label: 'Results' },
       { id: 'especialidades', label: 'Procedures' },
       { id: 'proceso', label: 'Process' },
-      { id: 'instalaciones', label: 'Facilities' },
       { id: 'peliculas', label: 'In Motion' },
       { id: 'preguntas', label: 'Questions' },
     ],
@@ -411,39 +377,7 @@ const en = {
     ],
   },
 
-  facilities: {
-    label: 'Facilities',
-    titleLines: ['Nine hundred metres', 'above Bogotá.'],
-    desc: 'Carrara marble, solid oak and brushed steel. A private ISO 7-certified operating theatre. A single patient in the building throughout the entire surgical day.',
-    enlarge: 'Enlarge',
-    galleryAria: 'Facilities gallery',
-    close: 'Close',
-    closeGallery: 'Close gallery',
-    prev: 'Previous',
-    next: 'Next',
-    plates: [
-      { src: 'consulta', alt: 'Clinical consultation in a private room with natural light, Marbre Bogotá' },
-      { src: 'protocolo-piel', alt: 'Preoperative skin preparation protocol' },
-      { src: 'endolaser', alt: 'Non-surgical procedures cabin' },
-      { src: 'toxina', alt: 'Follow-up check after botulinum toxin treatment' },
-      { src: 'armonizacion', alt: 'Facial proportion analysis prior to harmonization' },
-      { src: 'regenerativa', alt: 'Preparation of collagen biostimulators' },
-    ],
-  },
 
-  technology: {
-    label: 'Technology',
-    titleLines: ['The instrument', 'does not operate.'],
-    intro: 'No equipment replaces judgement. But inadequate equipment limits what that judgement can carry out. These are the five we use, and the exact reason for each.',
-    marquee: 'ISO 7 theatre · Staff anaesthetist · One procedure per day · ',
-    items: [
-      { name: 'Piezotome®', desc: 'Ultrasonic rhinoplasty, bone-precise', meta: 'Acteon' },
-      { name: 'Vectra® H2', desc: 'Three-dimensional preoperative simulation', meta: 'Canfield' },
-      { name: 'Renuvion®', desc: 'Helium-plasma skin retraction', meta: 'Apyx' },
-      { name: 'VASER® Lipo', desc: 'Selective ultrasonic emulsification', meta: 'Solta' },
-      { name: 'ISO 7 Theatre', desc: 'Laminar flow and positive pressure', meta: 'Certified' },
-    ],
-  },
 
   testimonials: {
     label: 'Testimonials',
@@ -537,8 +471,8 @@ const en = {
     cols: [
       { title: 'Institute', items: [
         { label: 'The Surgeon', id: 'cirujana' },
-        { label: 'Facilities', id: 'instalaciones' },
-        { label: 'Technology', id: 'tecnologia' },
+        { label: 'In Motion', id: 'peliculas' },
+        { label: 'Testimonials', id: 'testimonios' },
         { label: 'Questions', id: 'preguntas' },
       ] },
       { title: 'Procedures', items: [

@@ -11,8 +11,6 @@ import Results from './sections/Results'
 import Comparator from './sections/Comparator'
 import Specialties from './sections/Specialties'
 import Process from './sections/Process'
-import Facilities from './sections/Facilities'
-import Technology from './sections/Technology'
 import Testimonials from './sections/Testimonials'
 import Videos from './sections/Videos'
 import FAQ from './sections/FAQ'
@@ -59,8 +57,6 @@ export default function App() {
         <Comparator />
         <Specialties />
         <Process />
-        <Facilities />
-        <Technology />
         <Videos />
         <FAQ />
         <Booking />
